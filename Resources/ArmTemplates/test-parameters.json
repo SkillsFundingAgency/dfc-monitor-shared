@@ -1,0 +1,117 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "webAppPrefix": {
+            "value": "dfc-foo-app-foo-as"
+        },
+        "appServicePlanName": {
+            "value": "dfc-foo-asp"
+        },
+        "AspTier": {
+            "value": "I2"
+        },
+        "actionGroupId": {
+            "value": "fooID"
+        },
+        "actionGroupId2": {
+            "value": "fooID2"
+        },
+        "rgLocation": {
+            "value": "West Europe"
+        },
+        "rgName": {
+            "value": "dfc-foo-rg"
+        },
+        "dashboardName": {
+            "value": "fooDashboard"
+        },
+        "dashboardDisplayName": {
+            "value": "fooDisplayDashboard"
+        },
+        "workspaceName": {
+            "value": "fooWorkspace"
+        },
+        "location": {
+            "value": "dfc-foo-workspace"
+        },
+        "location2": {
+            "value": "dfc-foo-workspace"
+        },
+        "sku": {
+            "value": "30"
+        },
+        "retentionInDays": {
+            "value": "30"
+        },
+        "resourcePermissions": {
+            "value": true
+        },
+        "workbookDisplayName": {
+            "value": "dfcfooWorkspace"
+        },
+        "workbookType": {
+            "value": "Azure Monitor"
+        },
+        "workbookSourceId": {
+            "value": "fooResourceid"
+        },
+        "workbookDisplayName2": {
+            "value": "dfcfooWorkspace2"
+        },
+        "workbookType2": {
+            "value": "Azure Monitor2"
+        },
+        "workbookSourceId2": {
+            "value": "fooResourceid2"
+        },
+        "appServicePlanResourceGroup": {
+            "value": "dfc-foo-asp"
+        },
+        "environmentName": {
+            "value": "dfcfooEnv"
+        },
+        "sharedMonitorApplicationInsights": {
+            "value": "dfc-foo-ai"
+        },
+        "dataRetention":{
+            "value": "30"
+        },
+        "automationAccountName":{
+            "value": "dfc-foo-account-name"
+        },
+        "sampleGraphicalRunbookName": {
+            "value": "dfc-foo-graph-runbook"
+        },
+        "sampleGraphicalRunbookDescription": {
+            "value": "this is a graphical runbook"
+        },
+        "samplePowerShellRunbookName": {
+            "value":  "dfcfooPSRunook"
+        },
+        "samplePowerShellRunbookDescription": {
+            "value":  "this is a powershell run book"
+        },
+        "samplePython2RunbookName":{
+            "value": "dfcPython2Runbook"
+        },
+        "samplePython2RunbookDescription": {
+            "value": "this is a python run book"
+        },
+        "artifactsLocation": {
+            "value": "dfc-foo-artifact"
+        },
+        "artifactsLocationSasToken": {
+            "value":  "footoken123"
+        },
+        "heartbeatTableRetention": {
+            "value":  "__heartbeatTableRetention__"
+        },
+        "virtualMachineName": {
+            "value": "__virtualMachineName__"
+        },
+        "virtualMachineResourceGroup": {
+            "value": "__virtualMachineResourceGroup__"
+        }
+    }
+  }

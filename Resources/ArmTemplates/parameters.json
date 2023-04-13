@@ -1,0 +1,111 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "webAppPrefix": {
+          "value": "__webAppPrefix__"
+      },
+      "appServicePlanName": {
+          "value": "__appServicePlanName__"
+      },
+      "AspTier": {
+          "value": "__AspTier__"
+      },
+      "rgLocation": {
+          "value": "__rgLocation__"
+      },
+      "rgName": {
+          "value": "__rgName__"
+      },
+      "dashboardName": {
+          "value": "__dashboardName__"
+      },
+      "dashboardDisplayName": {
+          "value": "__dashboardDisplayName__"
+      },
+      "workspaceName": {
+          "value": "__workspaceName__"
+      },
+      "location": {
+          "value": "__location__"
+      },
+      "location2": {
+        "value": "__location2__"
+      },
+      "sku": {
+          "value": "__sku__"
+      },
+      "retentionInDays": {
+          "value": "__retentionInDays__"
+      },
+      "resourcePermissions": {
+          "value": __resourcePermissions__
+      },
+      "workbookDisplayName": {
+          "value": "__workbookDisplayName__"
+      },
+      "workbookType": {
+          "value": "__workbookType__"
+      },
+      "workbookSourceId": {
+          "value": "__workbookSourceId__"
+      },      
+      "workbookDisplayName2": {
+          "value": "__workbookDisplayName2__"
+      },
+      "workbookType2": {
+          "value": "__workbookType2__"
+      },
+      "workbookSourceId2": {
+          "value": "__workbookSourceId2__"
+      },
+      "appServicePlanResourceGroup": {
+          "value": "__appServicePlanResourceGroup__"
+      },
+      "environmentName": {
+          "value": "__environmentName__"
+      },
+      "sharedMonitorApplicationInsights": {
+          "value": "__sharedMonitorApplicationInsights__"
+      },
+      "dataRetention":{
+          "value": "__dataRetention__"
+      },
+      "automationAccountName":{
+          "value": "__automationAccountName__"
+      },
+      "sampleGraphicalRunbookName": {
+          "value": "__sampleGraphicalRunbookName__"
+      },
+      "sampleGraphicalRunbookDescription": {
+          "value": "__sampleGraphicalRunbookDescription__"
+      },
+      "samplePowerShellRunbookName": {
+        "value":  "__samplePowerShellRunbookName__"
+      },
+      "samplePowerShellRunbookDescription": {
+        "value":  "__samplePowerShellRunbookDescription__"
+      },
+      "samplePython2RunbookName":{
+        "value": "__samplePython2RunbookName__"
+      },
+      "samplePython2RunbookDescription": {
+          "value": "__samplePython2RunbookDescription__"
+      },
+      "artifactsLocation": {
+          "value": "__artifactsLocation__"
+      },
+      "artifactsLocationSasToken": {
+        "value":  "__artifactsLocationSasToken__"
+      },
+      "heartbeatTableRetention": {
+        "value":  "__heartbeatTableRetention__"
+      },
+      "virtualMachineName": {
+          "value": "__virtualMachineName__"
+      },
+      "virtualMachineResourceGroup": {
+          "value": "__virtualMachineResourceGroup__"
+      }
+  }
+}
