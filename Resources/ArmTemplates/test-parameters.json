@@ -48,7 +48,7 @@
             "value": true
         },
         "workbookDisplayName": {
-            "value": "dfcfooWorkspace"
+            "value": "dfcfooWorkbook"
         },
         "workbookType": {
             "value": "Azure Monitor"
@@ -57,7 +57,7 @@
             "value": "fooResourceid"
         },
         "workbookDisplayName2": {
-            "value": "dfcfooWorkspace2"
+            "value": "dfcfooWorkbook2"
         },
         "workbookType2": {
             "value": "Azure Monitor2"
