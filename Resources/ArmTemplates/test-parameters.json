@@ -42,7 +42,7 @@
             "value": "Standard"
         },
         "retentionInDays": {
-            "value": "30"
+            "value": 30
         },
         "resourcePermissions": {
             "value": true
@@ -75,7 +75,7 @@
             "value": "dfc-foo-ai"
         },
         "dataRetention":{
-            "value": "30"
+            "value": 30
         },
         "automationAccountName":{
             "value": "dfc-foo-account-name"
@@ -105,13 +105,13 @@
             "value":  "footoken123"
         },
         "heartbeatTableRetention": {
-            "value":  "__heartbeatTableRetention__"
+            "value":  30
         },
         "virtualMachineName": {
-            "value": "__virtualMachineName__"
+            "value": "dfc-foo-vm"
         },
         "virtualMachineResourceGroup": {
-            "value": "__virtualMachineResourceGroup__"
+            "value": "dfc-foo-rg"
         }
     }
   }
