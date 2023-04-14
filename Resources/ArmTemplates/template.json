@@ -285,26 +285,6 @@
       },
       {
         "apiVersion":"2022-09-01",
-        "name":"sharedMonitorActionGroup",
-        "type":"Microsoft.Resources/deployments",
-        "properties":{
-          "mode":"Incremental",
-          "templateLink":{
-            "uri":"[concat(variables('deploymentUrlBase'),'action-group.json')]",
-            "contentVersion":"1.0.0.0"
-          },
-          "parameters":{
-            "appInsightsName":{
-              "value":"[variables('actionGroupName')]"
-            },
-            "attachedService":{
-              "value":"[variables('webAppName')]"
-            }
-          }
-        }
-      },
-      {
-        "apiVersion":"2022-09-01",
         "name":"sharedMonitorActionGroup2",
         "type":"Microsoft.Resources/deployments",
         "properties":{
