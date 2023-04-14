@@ -17,6 +17,9 @@
       "rgLocation":{
         "type":"string"
       },
+      "AspTier":{
+        "type":"string"
+      },
       "rgName":{
         "type":"string"
       },
@@ -24,6 +27,12 @@
         "type":"string"
       },
       "virtualMachineResourceGroup":{
+        "type":"string"
+      },
+      "actionGroupId":{
+        "type":"string"
+      },
+      "actionGroupId2":{
         "type":"string"
       },
       "dashboardName":{
