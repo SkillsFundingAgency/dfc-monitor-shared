@@ -33,10 +33,10 @@
             "value": "fooWorkspace"
         },
         "location": {
-            "value": "fooworkspace1"
+            "value": "West Europe"
         },
         "location2": {
-            "value": "fooworkspace2"
+            "value": "West Europe"
         },
         "sku": {
             "value": "Standard"
@@ -99,7 +99,7 @@
             "value": "this is a python run book"
         },
         "artifactsLocation": {
-            "value": "dfc-foo-artifact"
+            "value": "West Europe"
         },
         "artifactsLocationSasToken": {
             "value":  "footoken123"
