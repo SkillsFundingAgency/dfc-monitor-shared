@@ -105,14 +105,14 @@
       },
       "workbookId":{
         "type":"string",
-        "defaultValue":"My Workbook",
+        "defaultValue":"Workbook",
         "metadata":{
           "description":"The friendly name for the workbook that is used in the Gallery or Saved List. Needs to be unique in the scope of the resource group and source."
         }
       },
       "workbookDisplayName":{
         "type":"string",
-        "defaultValue":"My Workbook",
+        "defaultValue":"Workbook",
         "metadata":{
           "description":"The friendly name for the workbook that is used in the Gallery or Saved List. Needs to be unique in the scope of the resource group and source."
         }
@@ -133,14 +133,14 @@
       },
       "workbookId2":{
         "type":"string",
-        "defaultValue":"My Workbook",
+        "defaultValue":"Workbook2",
         "metadata":{
           "description":"The friendly name for the workbook that is used in the Gallery or Saved List. Needs to be unique in the scope of the resource group and source."
         }
       },
       "workbookDisplayName2":{
         "type":"string",
-        "defaultValue":"My Workbook",
+        "defaultValue":"Workbook2",
         "metadata":{
           "description":"The friendly name for the workbook that is used in the Gallery or Saved List. Needs to be unique in the scope of the resource group and source."
         }
