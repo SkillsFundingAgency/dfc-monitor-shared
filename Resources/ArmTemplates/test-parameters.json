@@ -39,7 +39,7 @@
             "value": "dfc-foo-workspace"
         },
         "sku": {
-            "value": "30"
+            "value": "Standard"
         },
         "retentionInDays": {
             "value": "30"

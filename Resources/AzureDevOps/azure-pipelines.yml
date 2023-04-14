@@ -45,7 +45,7 @@ stages:
             SolutionBaseName: '${{ variables.SolutionBaseName }}'
 
         - task: PublishPipelineArtifact@0
-          displayName: Publish Page Registration artifact
+          displayName: Publish Shared Monitor artifact
           inputs:
             targetPath: '$(Build.SourcesDirectory)'
             artifactName: ${{ variables.SolutionBaseName }}
