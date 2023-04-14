@@ -33,10 +33,10 @@
             "value": "fooWorkspace"
         },
         "location": {
-            "value": "dfc-foo-workspace"
+            "value": "fooworkspace1"
         },
         "location2": {
-            "value": "dfc-foo-workspace"
+            "value": "fooworkspace2"
         },
         "sku": {
             "value": "Standard"
