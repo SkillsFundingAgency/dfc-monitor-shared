@@ -72,19 +72,19 @@
             "value": "dfc-foo-rg"
         },
         "actionGroupName1": {
-            "value": "dfc-1-ag"
+            "value": "dfc-foo-ag-1"
         },
         "emailAddress1": {
             "value": "1@gmail.com"
         },
         "actionGroupName2": {
-            "value": "dfc-2-ag"
+            "value": "dfc-foo-ag-2"
         },
         "emailAddress2": {
             "value": "2@gmail.com"
         },
         "actionGroupName3": {
-            "value": "dfc-3-ag"
+            "value": "dfc-foo-ag-3"
         },
         "emailAddress3": {
             "value": "3@gmail.com"
