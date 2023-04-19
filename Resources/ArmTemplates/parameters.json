@@ -73,6 +73,24 @@
       },
       "virtualMachineResourceGroup": {
           "value": "__virtualMachineResourceGroup__"
+      },
+      "actionGroupName1": {
+          "value": "__actionGroupName1__"
+      },
+      "emailAddress1": {
+          "value": "__emailAddress1__"
+      },
+      "actionGroupName2": {
+          "value": "__actionGroupName2__"
+      },
+      "emailAddress2": {
+          "value": "__emailAddress2__"
+      },
+      "actionGroupName3": {
+          "value": "__actionGroupName3__"
+      },
+      "emailAddress3": {
+          "value": "__emailAddress3__"
       }
   }
 }

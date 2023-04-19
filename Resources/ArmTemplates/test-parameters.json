@@ -53,23 +53,41 @@
         "workbookSourceId2": {
             "value": "fooResourceid2"
         },
-        "automationAccountName":{
+        "automationAccountName": {
             "value": "dfc-foo-account-name"
         },
         "artifactsLocation": {
             "value": "West Europe"
         },
         "artifactsLocationSasToken": {
-            "value":  "footoken123"
+            "value": "footoken123"
         },
         "heartbeatTableRetention": {
-            "value":  30
+            "value": 30
         },
         "virtualMachineName": {
             "value": "dfc-foo-vm"
         },
         "virtualMachineResourceGroup": {
             "value": "dfc-foo-rg"
+        },
+        "actionGroupName1": {
+            "value": "dfc-1-ag"
+        },
+        "emailAddress1": {
+            "value": "1@gmail.com"
+        },
+        "actionGroupName2": {
+            "value": "dfc-2-ag"
+        },
+        "emailAddress2": {
+            "value": "2@gmail.com"
+        },
+        "actionGroupName3": {
+            "value": "dfc-3-ag"
+        },
+        "emailAddress3": {
+            "value": "3@gmail.com"
         }
     }
-  }
+}

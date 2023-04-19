@@ -171,15 +171,49 @@
         "metadata":{
           "description":"The sasToken required to access artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated"
         }
+      },
+      "actionGroupName1":{
+        "type":"string",
+        "metadata":{
+          "description":"Action Group Name for resource 1"
+        }
+      },
+      "emailAddress1":{
+        "type":"string",
+        "metadata":{
+          "description":"Email Address for resource 1"
+        }
+      },
+      "actionGroupName2":{
+        "type":"string",
+        "metadata":{
+          "description":"Action Group Name for resource 2"
+        }
+      },
+      "emailAddress2":{
+        "type":"string",
+        "metadata":{
+          "description":"Email Address for resource 2"
+        }
+      },
+      "actionGroupName3":{
+        "type":"string",
+        "metadata":{
+          "description":"Action Group Name for resource 3"
+        }
+      },
+      "emailAddress3":{
+        "type":"string",
+        "metadata":{
+          "description":"Email Address for resource 3"
+        }
       }
+
     },
     "variables":{
       "deploymentUrlBase":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-devops/master/ArmTemplates/",
       "webAppName":"[concat(parameters('webAppPrefix'),'-as')]",
       "appInsightName":"[concat(parameters('webAppPrefix'),'-ai')]",
-      "actionGroupName":"[concat(parameters('webAppPrefix'),'-agr')]",
-      "actionGroupName2":"[concat(parameters('webAppPrefix'),'-2','-agr')]",
-      "actionGroupName3":"[concat(parameters('webAppPrefix'),'-3','-agr')]",
       "policyName":"restrict-allowed-locations-policy",
       "policyDisplayName":"Restrict allowed locations for resources",
       "policyDescription":"This policy restrict the locations you can specify when deploying resources. Excludes resource groups, Microsoft.AzureActiveDirectory/b2cDirectories, and resources that use the 'global' region."
@@ -207,20 +241,20 @@
       },
       {
         "apiVersion":"2022-09-01",
-        "name":"sharedMonitorActionGroup",
+        "name":"sharedMonitorActionGroup1",
         "type":"Microsoft.Resources/deployments",
         "properties":{
           "mode":"Incremental",
           "templateLink":{
-            "uri":"[concat(variables('deploymentUrlBase'),'action-group.json')]",
+            "uri":"[concat(variables('deploymentUrlBase'),'Application-Insights/action-groups.json')]",
             "contentVersion":"1.0.0.0"
           },
           "parameters":{
-            "appInsightsName":{
-              "value":"[variables('actionGroupName')]"
+            "actionGroupName":{
+              "value":"[parameters('actionGroupName1')]"
             },
-            "attachedService":{
-              "value":"[variables('webAppName')]"
+            "emailAddress":{
+              "value":"[parameters('emailAddress1')]"
             }
           }
         }
@@ -232,15 +266,15 @@
         "properties":{
           "mode":"Incremental",
           "templateLink":{
-            "uri":"[concat(variables('deploymentUrlBase'),'action-group.json')]",
+            "uri":"[concat(variables('deploymentUrlBase'),'Application-Insights/action-groups.json')]",
             "contentVersion":"1.0.0.0"
           },
           "parameters":{
-            "appInsightsName":{
-              "value":"[variables('actionGroupName2')]"
+            "actionGroupName":{
+              "value":"[parameters('actionGroupName2')]"
             },
-            "attachedService":{
-              "value":"[variables('webAppName')]"
+            "emailAddress":{
+              "value":"[parameters('emailAddress2')]"
             }
           }
         }
@@ -252,15 +286,15 @@
         "properties":{
           "mode":"Incremental",
           "templateLink":{
-            "uri":"[concat(variables('deploymentUrlBase'),'action-group.json')]",
+            "uri":"[concat(variables('deploymentUrlBase'),'Application-Insights/action-groups.json')]",
             "contentVersion":"1.0.0.0"
           },
           "parameters":{
-            "appInsightsName":{
-              "value":"[variables('actionGroupName3')]"
+            "actionGroupName":{
+              "value":"[parameters('actionGroupName3')]"
             },
-            "attachedService":{
-              "value":"[variables('webAppName')]"
+            "emailAddress":{
+              "value":"[parameters('emailAddress3')]"
             }
           }
         }
