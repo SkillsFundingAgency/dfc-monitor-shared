@@ -8,16 +8,7 @@
           "description":"Prefix for the function app resources"
         }
       },
-      "appServicePlanName":{
-        "type":"string",
-        "metadata":{
-          "description":"App service plan to run the function app under"
-        }
-      },
       "rgLocation":{
-        "type":"string"
-      },
-      "AspTier":{
         "type":"string"
       },
       "rgName":{
@@ -27,12 +18,6 @@
         "type":"string"
       },
       "virtualMachineResourceGroup":{
-        "type":"string"
-      },
-      "actionGroupId":{
-        "type":"string"
-      },
-      "actionGroupId2":{
         "type":"string"
       },
       "dashboardName":{
@@ -159,33 +144,6 @@
           "description":"The id of resource instance to which the workbook will be associated."
         }
       },
-      "appServicePlanResourceGroup":{
-        "type":"string",
-        "metadata":{
-          "description":"Resource group the app service plan is in"
-        }
-      },
-      "environmentName":{
-        "type":"string",
-        "metadata":{
-          "description":"EnvironmentName to be used in the EnvironmentSetting__EnvironmentName config setting.  This may be different to the Azure DevOps environment"
-        }
-      },
-      "sharedMonitorApplicationInsights":{
-        "type":"string",
-        "metadata":{
-          "description":"Application Insights Reference for shared resources i.e. dfc-<env>-shared-ai"
-        }
-      },
-      "dataRetention":{
-        "type":"int",
-        "defaultValue":30,
-        "minValue":7,
-        "maxValue":730,
-        "metadata":{
-          "description":"Number of days to retain data."
-        }
-      },
       "automationAccountName":{
         "type":"string",
         "metadata":{
@@ -197,22 +155,6 @@
         "defaultValue":"AzureAutomationTutorial"
       },
       "sampleGraphicalRunbookDescription":{
-        "type":"string",
-        "defaultValue":"An example runbook that gets all the Resource Manager resources by using the Run As account (service principal)."
-      },
-      "samplePowerShellRunbookName":{
-        "type":"string",
-        "defaultValue":"AzureAutomationTutorialScript"
-      },
-      "samplePowerShellRunbookDescription":{
-        "type":"string",
-        "defaultValue":"An example runbook that gets all the Resource Manager resources by using the Run As account (service principal)."
-      },
-      "samplePython2RunbookName":{
-        "type":"string",
-        "defaultValue":"AzureAutomationTutorialPython2"
-      },
-      "samplePython2RunbookDescription":{
         "type":"string",
         "defaultValue":"An example runbook that gets all the Resource Manager resources by using the Run As account (service principal)."
       },
@@ -415,22 +357,6 @@
               ]
             }
           ]
-        }
-      },
-      {
-        "type":"Microsoft.OperationalInsights/workspaces",
-        "apiVersion":"2022-10-01",
-        "name":"[parameters('workspaceName')]",
-        "location":"[parameters('location')]",
-        "properties":{
-          "sku":{
-            "name":"[parameters('sku')]"
-          },
-          "retentionInDays":"[parameters('dataRetention')]",
-          "features":{
-            "searchVersion":1,
-            "legacy":0
-          }
         }
       },
       {
