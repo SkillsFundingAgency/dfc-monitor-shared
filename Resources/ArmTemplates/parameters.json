@@ -5,12 +5,6 @@
       "webAppPrefix": {
           "value": "__webAppPrefix__"
       },
-      "appServicePlanName": {
-          "value": "__appServicePlanName__"
-      },
-      "AspTier": {
-          "value": "__AspTier__"
-      },
       "rgLocation": {
           "value": "__rgLocation__"
       },
@@ -39,7 +33,7 @@
           "value": "__retentionInDays__"
       },
       "resourcePermissions": {
-          "value": __resourcePermissions__
+          "value": "__resourcePermissions__"
       },
       "workbookDisplayName": {
           "value": "__workbookDisplayName__"
@@ -59,38 +53,11 @@
       "workbookSourceId2": {
           "value": "__workbookSourceId2__"
       },
-      "appServicePlanResourceGroup": {
-          "value": "__appServicePlanResourceGroup__"
-      },
-      "environmentName": {
-          "value": "__environmentName__"
-      },
-      "sharedMonitorApplicationInsights": {
-          "value": "__sharedMonitorApplicationInsights__"
-      },
-      "dataRetention":{
-          "value": "__dataRetention__"
-      },
       "automationAccountName":{
           "value": "__automationAccountName__"
       },
       "sampleGraphicalRunbookName": {
           "value": "__sampleGraphicalRunbookName__"
-      },
-      "sampleGraphicalRunbookDescription": {
-          "value": "__sampleGraphicalRunbookDescription__"
-      },
-      "samplePowerShellRunbookName": {
-        "value":  "__samplePowerShellRunbookName__"
-      },
-      "samplePowerShellRunbookDescription": {
-        "value":  "__samplePowerShellRunbookDescription__"
-      },
-      "samplePython2RunbookName":{
-        "value": "__samplePython2RunbookName__"
-      },
-      "samplePython2RunbookDescription": {
-          "value": "__samplePython2RunbookDescription__"
       },
       "artifactsLocation": {
           "value": "__artifactsLocation__"
