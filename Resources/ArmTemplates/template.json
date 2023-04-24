@@ -436,12 +436,6 @@
         }
       },
       {
-        "type":"Microsoft.Resources/resourceGroups",
-        "apiVersion":"2022-09-01",
-        "location":"[parameters('location')]",
-        "name":"[parameters('rgName')]"
-      },
-      {
         "type":"Microsoft.Authorization/policyDefinitions",
         "name":"[variables('policyName')]",
         "apiVersion":"2021-06-01",
