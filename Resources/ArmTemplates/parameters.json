@@ -5,9 +5,6 @@
       "webAppPrefix": {
           "value": "__webAppPrefix__"
       },
-      "rgName": {
-          "value": "__rgName__"
-      },
       "dashboardName": {
           "value": "__dashboardName__"
       },

@@ -8,9 +8,6 @@
           "description":"Prefix for the function app resources"
         }
       },
-      "rgName":{
-        "type":"string"
-      },
       "virtualMachineName":{
         "type":"string"
       },
@@ -204,11 +201,8 @@
     "variables":{
       "deploymentUrlBase":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-devops/master/ArmTemplates/",
       "webAppName":"[concat(parameters('webAppPrefix'),'-as')]",
-      "appInsightName":"[concat(parameters('webAppPrefix'),'-ai')]",
-      "policyName":"restrict-allowed-locations-policy",
-      "policyDisplayName":"Restrict allowed locations for resources",
-      "policyDescription":"This policy restrict the locations you can specify when deploying resources. Excludes resource groups, Microsoft.AzureActiveDirectory/b2cDirectories, and resources that use the 'global' region."
-    },
+      "appInsightName":"[concat(parameters('webAppPrefix'),'-ai')]"
+      },
     "resources":[
       {
         "apiVersion":"2022-09-01",
@@ -433,51 +427,6 @@
         ],
         "properties":{
           "resourceId":"[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-        }
-      },
-      {
-        "type":"Microsoft.Authorization/policyDefinitions",
-        "name":"[variables('policyName')]",
-        "apiVersion":"2021-06-01",
-        "properties":{
-          "displayName":"[variables('policyDisplayName')]",
-          "policyType":"Custom",
-          "description":"[variables('policyDescription')]",
-          "metadata":{
-            "category":"General"
-          },
-          "mode":"All",
-          "parameters":{
-            "allowedLocations":{
-              "type":"Array",
-              "metadata":{
-                "displayName":"Allowed locations",
-                "description":"The list of locations that can be specified when deploying resources.",
-                "strongType":"location"
-              }
-            }
-          },
-          "policyRule":{
-            "if":{
-              "allOf":[
-                {
-                  "field":"location",
-                  "notIn":"[[parameters('allowedLocations')]"
-                },
-                {
-                  "field":"location",
-                  "notEquals":"global"
-                },
-                {
-                  "field":"type",
-                  "notEquals":"Microsoft.AzureActiveDirectory/b2cDirectories"
-                }
-              ]
-            },
-            "then":{
-              "effect":"Deny"
-            }
-          }
         }
       }
     ],

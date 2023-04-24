@@ -5,9 +5,6 @@
         "webAppPrefix": {
             "value": "dfc-foo-app-foo-as"
         },
-        "rgName": {
-            "value": "dfc-test-template-rg"
-        },
         "dashboardName": {
             "value": "fooDashboard"
         },
