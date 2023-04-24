@@ -5,11 +5,8 @@
         "webAppPrefix": {
             "value": "dfc-foo-app-foo-as"
         },
-        "rgLocation": {
-            "value": "West Europe"
-        },
         "rgName": {
-            "value": "dfc-foo-rg"
+            "value": "dfc-test-template-rg"
         },
         "dashboardName": {
             "value": "fooDashboard"
@@ -21,9 +18,6 @@
             "value": "fooWorkspace"
         },
         "location": {
-            "value": "West Europe"
-        },
-        "location2": {
             "value": "West Europe"
         },
         "sku": {

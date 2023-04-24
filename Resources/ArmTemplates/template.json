@@ -8,9 +8,6 @@
           "description":"Prefix for the function app resources"
         }
       },
-      "rgLocation":{
-        "type":"string"
-      },
       "rgName":{
         "type":"string"
       },
@@ -41,12 +38,6 @@
         }
       },
       "location":{
-        "type":"string",
-        "metadata":{
-          "description":"Specify the location for the workspace."
-        }
-      },
-      "location2":{
         "type":"string",
         "metadata":{
           "description":"Specify the location for the workspace."
@@ -317,7 +308,7 @@
         "type":"microsoft.insights/workbooks",
         "apiVersion":"2022-04-01",
         "name":"[parameters('workbookId2')]",
-        "location":"[parameters('location2')]",
+        "location":"[parameters('location')]",
         "kind":"shared",
         "properties":{
           "displayName":"[parameters('workbookDisplayName2')]",
@@ -447,7 +438,7 @@
       {
         "type":"Microsoft.Resources/resourceGroups",
         "apiVersion":"2022-09-01",
-        "location":"[parameters('rgLocation')]",
+        "location":"[parameters('location')]",
         "name":"[parameters('rgName')]"
       },
       {

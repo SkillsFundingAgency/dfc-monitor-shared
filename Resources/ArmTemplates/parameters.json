@@ -5,9 +5,6 @@
       "webAppPrefix": {
           "value": "__webAppPrefix__"
       },
-      "rgLocation": {
-          "value": "__rgLocation__"
-      },
       "rgName": {
           "value": "__rgName__"
       },
@@ -22,9 +19,6 @@
       },
       "location": {
           "value": "__location__"
-      },
-      "location2": {
-        "value": "__location2__"
       },
       "sku": {
           "value": "__sku__"
