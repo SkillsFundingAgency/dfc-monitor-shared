@@ -1,87 +1,42 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-      "webAppPrefix": {
-          "value": "__webAppPrefix__"
-      },
-      "dashboardName": {
-          "value": "__dashboardName__"
-      },
-      "dashboardDisplayName": {
-          "value": "__dashboardDisplayName__"
-      },
-      "workspaceName": {
-          "value": "__workspaceName__"
-      },
-      "location": {
-          "value": "__location__"
-      },
-      "sku": {
-          "value": "__sku__"
-      },
-      "retentionInDays": {
-          "value": "__retentionInDays__"
-      },
-      "resourcePermissions": {
-          "value": "__resourcePermissions__"
-      },
-      "workbookDisplayName": {
-          "value": "__workbookDisplayName__"
-      },
-      "workbookType": {
-          "value": "__workbookType__"
-      },
-      "workbookSourceId": {
-          "value": "__workbookSourceId__"
-      },      
-      "workbookDisplayName2": {
-          "value": "__workbookDisplayName2__"
-      },
-      "workbookType2": {
-          "value": "__workbookType2__"
-      },
-      "workbookSourceId2": {
-          "value": "__workbookSourceId2__"
-      },
-      "automationAccountName":{
-          "value": "__automationAccountName__"
-      },
-      "sampleGraphicalRunbookName": {
-          "value": "__sampleGraphicalRunbookName__"
-      },
-      "artifactsLocation": {
-          "value": "__artifactsLocation__"
-      },
-      "artifactsLocationSasToken": {
-        "value":  "__artifactsLocationSasToken__"
-      },
-      "heartbeatTableRetention": {
-        "value":  "__heartbeatTableRetention__"
-      },
-      "virtualMachineName": {
-          "value": "__virtualMachineName__"
-      },
-      "virtualMachineResourceGroup": {
-          "value": "__virtualMachineResourceGroup__"
-      },
-      "actionGroupName1": {
-          "value": "__actionGroupName1__"
-      },
-      "emailAddress1": {
-          "value": "__emailAddress1__"
-      },
-      "actionGroupName2": {
-          "value": "__actionGroupName2__"
-      },
-      "emailAddress2": {
-          "value": "__emailAddress2__"
-      },
-      "actionGroupName3": {
-          "value": "__actionGroupName3__"
-      },
-      "emailAddress3": {
-          "value": "__emailAddress3__"
-      }
-  }
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appInsightsName": {
+            "value": "__appInsightsName__"
+        },
+        "actionGroupName1": {
+            "value": "__actionGroupName1__"
+        },
+        "actionGroupShortName1": {
+            "value": "__actionGroupShortName1__"
+        },
+        "actionGroupEmail1": {
+            "value": "__actionGroupEmail1__"
+        },
+        "actionGroupName2": {
+            "value": "__actionGroupName2__"
+        },
+        "actionGroupShortName2": {
+            "value": "__actionGroupShortName2__"
+        },
+        "actionGroupEmail2": {
+            "value": "__actionGroupEmail2__"
+        },
+        "actionGroupName3": {
+            "value": "__actionGroupName3__"
+        },
+        "actionGroupShortName3": {
+            "value": "__actionGroupShortName3__"
+        },
+        "actionGroupEmail3": {
+            "value": "__actionGroupEmail3__"
+        },
+        "dashboardName": {
+            "value": "__dashboardName__"
+        },
+        "sharedWorkspaceId": {
+            "value": "__sharedWorkspaceId__"
+        }
+    }
 }

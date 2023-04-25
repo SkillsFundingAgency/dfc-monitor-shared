@@ -2,83 +2,41 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "webAppPrefix": {
-            "value": "dfc-foo-app-foo-as"
-        },
-        "dashboardName": {
-            "value": "fooDashboard"
-        },
-        "dashboardDisplayName": {
-            "value": "fooDisplayDashboard"
-        },
-        "workspaceName": {
-            "value": "fooWorkspace"
-        },
-        "location": {
-            "value": "West Europe"
-        },
-        "sku": {
-            "value": "Standard"
-        },
-        "retentionInDays": {
-            "value": 30
-        },
-        "resourcePermissions": {
-            "value": true
-        },
-        "workbookDisplayName": {
-            "value": "dfcfooWorkbook"
-        },
-        "workbookType": {
-            "value": "Azure Monitor"
-        },
-        "workbookSourceId": {
-            "value": "fooResourceid"
-        },
-        "workbookDisplayName2": {
-            "value": "dfcfooWorkbook2"
-        },
-        "workbookType2": {
-            "value": "Azure Monitor2"
-        },
-        "workbookSourceId2": {
-            "value": "fooResourceid2"
-        },
-        "automationAccountName": {
-            "value": "dfc-foo-account-name"
-        },
-        "artifactsLocation": {
-            "value": "West Europe"
-        },
-        "artifactsLocationSasToken": {
-            "value": "footoken123"
-        },
-        "heartbeatTableRetention": {
-            "value": 30
-        },
-        "virtualMachineName": {
-            "value": "dfc-foo-vm"
-        },
-        "virtualMachineResourceGroup": {
-            "value": "dfc-foo-rg"
+        "appInsightsName": {
+            "value": "dfc-foo-shared-ai"
         },
         "actionGroupName1": {
-            "value": "dfc-foo-ag-1"
+            "value": "dfc-foo-shared-oncall-ag"
         },
-        "emailAddress1": {
-            "value": "1@gmail.com"
+        "actionGroupShortName1": {
+            "value": "AG-ONCALL"
+        },
+        "actionGroupEmail1": {
+            "value": "ncs1@automation.com"
         },
         "actionGroupName2": {
-            "value": "dfc-foo-ag-2"
+            "value": "dfc-foo-shared-support-ag"
         },
-        "emailAddress2": {
-            "value": "2@gmail.com"
+        "actionGroupShortName2": {
+            "value": "AG-NETCOBAU"
+        },
+        "actionGroupEmail2": {
+            "value": "ncs1@automation.com"
         },
         "actionGroupName3": {
-            "value": "dfc-foo-ag-3"
+            "value": "dfc-foo-shared-stakeholder-ag"
         },
-        "emailAddress3": {
-            "value": "3@gmail.com"
+        "actionGroupShortName3": {
+            "value": "AG-NCSSTK"
+        },
+        "actionGroupEmail3": {
+            "value": "ncs1@automation.com"
+        },
+        "dashboardName": {
+            "value": "dfc-foo-shared-ai-dashboard"
+        },
+        "sharedWorkspaceId": {
+            "value": "dfc-foo-shared-la"
         }
     }
 }
