@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "metricAlerts_alert_pr_sqldb_DTU_name": {
+            "value": null
+        },
+        "actiongroups_dfc_dev_shared_support_ag_externalid": {
+            "value": null
+        }
+    }
+}

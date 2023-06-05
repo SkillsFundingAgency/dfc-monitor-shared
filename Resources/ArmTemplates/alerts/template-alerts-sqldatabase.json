@@ -1,0 +1,73 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-sqldb-DTU')]",
+            "location": "global",
+            "tags": {
+                "Environment": "Dev/Test",
+                "Product": "Digital First Career Service (DFCS) Website (PP)",
+                "Service Offering": "Digital First Career Service (DFCS) Website (PP)"
+            },
+            "properties": {
+                "description": "[concat(parameters('Environment'),' SQL database alert – High DTU percentage usage')]",
+                "severity": 1,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "microsoft.sql/servers/databases",
+                            "metricName": "dtu_consumption_percent",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "microsoft.sql/servers/databases",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
+    ]
+}
