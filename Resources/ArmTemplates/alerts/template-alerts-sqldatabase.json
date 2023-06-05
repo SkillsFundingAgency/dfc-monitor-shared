@@ -28,7 +28,7 @@
             "tags": {
             },
             "properties": {
-                "description": "[concat(parameters('Environment'),' SQL database alert – High DTU percentage usage')]",
+                "description": "[concat(parameters('Environment'),' SQL database alert - High DTU percentage usage')]",
                 "severity": 1,
                 "enabled": true,
                 "scopes": [
