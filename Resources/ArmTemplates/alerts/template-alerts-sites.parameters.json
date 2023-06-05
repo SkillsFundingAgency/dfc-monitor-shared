@@ -8,9 +8,6 @@
         "Scope": {
             "value": "___resourceId__" // TODO: Fill in parameter value
         },
-        "Environment": {
-            "value": "__env__" // TODO: Fill in parameter value
-        },
         "ActionGroupStakeholdersId": {
             "value": "__ActionGroupStakeholdersId__" // TODO: Fill in parameter value
         },
