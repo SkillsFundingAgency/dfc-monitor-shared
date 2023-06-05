@@ -2,11 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "BaseName": {
+            "value": "__basename__"
+        },
         "Scope": {
             "value": "___resourceId__" // TODO: Fill in parameter value
-        },
-        "Environment": {
-            "value": "__env__" // TODO: Fill in parameter value
         },
         "ActionGroupStakeholdersId": {
             "value": "__ActionGroupStakeholdersId__" // TODO: Fill in parameter value
