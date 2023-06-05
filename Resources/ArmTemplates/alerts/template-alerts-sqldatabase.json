@@ -26,9 +26,6 @@
             "name": "[concat('alert-',parameters('Environment'),'-sqldb-DTU')]",
             "location": "global",
             "tags": {
-                "Environment": "Dev/Test",
-                "Product": "Digital First Career Service (DFCS) Website (PP)",
-                "Service Offering": "Digital First Career Service (DFCS) Website (PP)"
             },
             "properties": {
                 "description": "[concat(parameters('Environment'),' SQL database alert – High DTU percentage usage')]",
@@ -64,6 +61,100 @@
                 "actions": [
                     {
                         "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+          //  "id": "/subscriptions/962cae10-2950-412a-93e3-d8ae92b17896/resourceGroups/dfc-dev-shared-rg/providers/microsoft.insights/metricAlerts/alert-np-sqldb-LOGIO",
+            "name": "[concat('alert-',parameters('Environment'),'-sqldb-LOGIO')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "location": "global",
+            "tags": {
+            },
+            "properties": {
+                "description": "[concat(parameters('Environment'),' SQL database alert - High Log IO percentage usage')]",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "microsoft.sql/servers/databases",
+                            "metricName": "log_write_percent",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "microsoft.sql/servers/databases",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+        //    "id": "/subscriptions/962cae10-2950-412a-93e3-d8ae92b17896/resourceGroups/dfc-dev-shared-rg/providers/microsoft.insights/metricAlerts/alert-np-sqldb-CPU",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'--sqldb-CPU')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "tags": {
+            },
+            "properties": {
+                "description": "[concat(parameters('Environment'),' SQL database alert - High CPU Usage')]",
+                "severity": 4,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "microsoft.sql/servers/databases",
+                            "metricName": "cpu_percent",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "microsoft.sql/servers/databases",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
                         "webHookProperties": {}
                     }
                 ]
