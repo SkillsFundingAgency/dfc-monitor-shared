@@ -20,7 +20,134 @@
     },
     "variables": {},
     "resources": [
-        
-
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-files-capacity')]",
+            "location": "global",
+            "tags": {
+             },
+            "properties": {
+                "description": "[concat(parameters('Environment'),' Premium File Share alert - capacity at 95%')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT1H",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 5222680231936,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Storage/storageAccounts",
+                            "metricName": "UsedCapacity",
+                            "operator": "GreaterThanOrEqual",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Storage/storageAccounts",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-files-throttled')]",
+            "location": "global",
+            "tags": {
+                           },
+            "properties": {
+                "description": "[concat(parameters('Environment'),' Premium File Share alert - Usage throttled')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Storage/storageAccounts",
+                            "metricName": "Transactions",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Total",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Storage/storageAccounts",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-blob-requests')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('Environment'),' Blob Storage - Request success 99% or lower')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT15M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 99,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Storage/storageAccounts",
+                            "metricName": "Availability",
+                            "operator": "LessThanOrEqual",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Storage/storageAccounts",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
     ]
 }
