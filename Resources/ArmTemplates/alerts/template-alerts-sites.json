@@ -1,0 +1,508 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "string"
+        },
+
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-memory')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'),'Application Service alert - Higher than average memory usage')]",
+                "severity": 4,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "AverageMemoryWorkingSet",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-response')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average response time')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "AverageResponseTime",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-connections')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average App Connections')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "AppConnections",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-cpu')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average CPU usage')]",
+                "severity": 4,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "AppConnections",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-dataout')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average data transferred inbound')]",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "DataIn",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-datain')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average data transferred outbound')]",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "DataOut",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-storage')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average FileSystem usage')]",
+                "severity": 4,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "DataIn",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-handles')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average handle count')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Handles",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-http4xx')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Abnormally high 4xx errors')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Http4xx",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-http5xx')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - Abnormally high 5xx errors')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Http5xx",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },{
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-apps-requests')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('Environment'), 'Application Service alert - High current requests')]",
+                "severity": 3,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Requests",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
+    ]
+}
