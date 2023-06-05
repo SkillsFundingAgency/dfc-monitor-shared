@@ -1,12 +1,21 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "metricAlerts_alert_pr_sqldb_DTU_name": {
-            "value": null
+        "Scope": {
+            "value": "___resourceId__" // TODO: Fill in parameter value
         },
-        "actiongroups_dfc_dev_shared_support_ag_externalid": {
-            "value": null
+        "Environment": {
+            "value": "__env__" // TODO: Fill in parameter value
+        },
+        "ActionGroupStakeholdersId": {
+            "value": "__ActionGroupStakeholdersId__" // TODO: Fill in parameter value
+        },
+        "ActionGroupBauId": {
+            "value": "__ActionGroupBauId__" // TODO: Fill in parameter value
+        },
+        "ActionGroupOncallId": {
+            "value": "__ActionGroupBauId__" // TODO: Fill in parameter value
         }
     }
 }
