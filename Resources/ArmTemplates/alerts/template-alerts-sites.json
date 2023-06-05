@@ -5,8 +5,7 @@
         "Scope": {
             "type": "string"
         },
-
-        "Environment": {
+        "BaseName": {
             "type": "string"
         },
         "ActionGroupStakeholdersId": {
@@ -24,10 +23,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-memory')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-memory')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'),'Application Service alert - Higher than average memory usage')]",
+                "description": "[concat(parameters('BaseName'),'Application Service alert - Higher than average memory usage')]",
                 "severity": 4,
                 "enabled": true,
                 "scopes": [
@@ -68,10 +67,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-response')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-response')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average response time')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average response time')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
@@ -112,10 +111,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-connections')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-connections')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average App Connections')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average App Connections')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
@@ -156,10 +155,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-cpu')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-cpu')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average CPU usage')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average CPU usage')]",
                 "severity": 4,
                 "enabled": true,
                 "scopes": [
@@ -200,10 +199,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-dataout')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-dataout')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average data transferred inbound')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average data transferred inbound')]",
                 "severity": 3,
                 "enabled": true,
                 "scopes": [
@@ -244,10 +243,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-datain')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-datain')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average data transferred outbound')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average data transferred outbound')]",
                 "severity": 3,
                 "enabled": true,
                 "scopes": [
@@ -288,10 +287,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-storage')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-storage')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average FileSystem usage')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average FileSystem usage')]",
                 "severity": 4,
                 "enabled": true,
                 "scopes": [
@@ -332,10 +331,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-handles')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-handles')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Higher than average handle count')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average handle count')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
@@ -376,10 +375,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-http4xx')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-http4xx')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Abnormally high 4xx errors')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 4xx errors')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
@@ -420,10 +419,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-http5xx')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-http5xx')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - Abnormally high 5xx errors')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 5xx errors')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
@@ -463,10 +462,10 @@
         },{
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-apps-requests')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-requests')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('Environment'), 'Application Service alert - High current requests')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - High current requests')]",
                 "severity": 3,
                 "enabled": true,
                 "scopes": [
