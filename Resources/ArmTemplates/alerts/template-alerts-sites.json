@@ -220,7 +220,7 @@
                             },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
-                            "metricName": "DataIn",
+                            "metricName": "BytesSent",
                             "operator": "GreaterOrLessThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
@@ -264,51 +264,7 @@
                             },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
-                            "metricName": "DataOut",
-                            "operator": "GreaterOrLessThan",
-                            "timeAggregation": "Average",
-                            "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
-                        }
-                    ],
-                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
-                },
-                "autoMitigate": true,
-                "targetResourceType": "Microsoft.Web/sites",
-                "targetResourceRegion": "westeurope",
-                "actions": [
-                    {
-                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
-                        "webHookProperties": {}
-                    }
-                ]
-            }
-        },
-        {
-            "type": "Microsoft.Insights/metricAlerts",
-            "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('BaseName'),'-storage')]",
-            "location": "global",
-            "properties": {
-                "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average FileSystem usage')]",
-                "severity": 4,
-                "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
-                "evaluationFrequency": "PT1M",
-                "windowSize": "PT5M",
-                "criteria": {
-                    "allOf": [
-                        {
-                            "alertSensitivity": "Medium",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
-                            "name": "Metric1",
-                            "metricNamespace": "Microsoft.Web/sites",
-                            "metricName": "DataIn",
+                            "metricName": "BytesSent",
                             "operator": "GreaterOrLessThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
