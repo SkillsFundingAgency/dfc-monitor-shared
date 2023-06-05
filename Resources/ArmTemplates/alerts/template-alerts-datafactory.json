@@ -1,0 +1,165 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+               {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedruna')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedruna')]",
+                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Activity Run')]",
+                "severity": 2,
+                "enabled": true,
+                "evaluationFrequency": "PT10M",
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "targetResourceTypes": [
+                    "microsoft.datafactory/factories"
+                ],
+                "windowSize": "PT10M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "ADFActivityRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded'\n| where FailureType != 'UserError'",
+                            // "AzureActivity\n| where ActivityStatus has \"Failed\"\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "resourceIdColumn": "Resource",
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunp')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunp')]",
+                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Pipeline Run')]",
+                "severity": 2,
+                "enabled": true,
+                "evaluationFrequency": "PT10M",
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "targetResourceTypes": [
+                    "microsoft.datafactory/factories"
+                ],
+                "windowSize": "PT10M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "ADFPipelineRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded'\n| where FailureType != 'UserError'",
+                            //"AzureActivity\n| where ActivityStatus has \"Failed\"\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "resourceIdColumn": "Resource",
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunt')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunt')]",
+                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Trigger Run')]",
+                "severity": 2,
+                "enabled": true,
+                "evaluationFrequency": "PT10M",
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "targetResourceTypes": [
+                    "microsoft.datafactory/factories"
+                ],
+                "windowSize": "PT10M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "ADFTriggerRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded' and Status != 'WaitingOnDependency'\n| where FailureType != 'UserError'",
+                            //"AzureActivity\n| where ActivityStatus has \"Failed\"\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "resourceIdColumn": "_ResourceId",
+                            "operator": "GreaterThan",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        }
+    ]
+}

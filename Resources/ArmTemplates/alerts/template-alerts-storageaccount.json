@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        
+
+    ]
+}
