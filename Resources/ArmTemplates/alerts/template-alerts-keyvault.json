@@ -26,14 +26,15 @@
             "name": "[concat('alert-',parameters('Environment'),'-keyvault-availability')]",
             "location": "global",
             "tags": {
+                "Environment": "Dev/Test",
+                "Product": "Digital First Career Service (DFCS) Website (PP)",
+                "Service Offering": "Digital First Career Service (DFCS) Website (PP)"
             },
             "properties": {
-                "description": "[concat('alert-',parameters('Environment'),' Key Vault Alert - Low availability - DFC-')]",
+                "description": "[concat('alert-',parameters('Environment'),' Key Vault Alert - Availability')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT15M",
                 "criteria": {
@@ -73,9 +74,7 @@
                 "description": "[concat('alert-',parameters('Environment'),' Key Vault Alert - Capacity saturated')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT15M",
                 "criteria": {
@@ -115,9 +114,7 @@
                 "description": "[concat(parameters('Environment'),' Key Vault Alert - High request service latency')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT15M",
                 "criteria": {

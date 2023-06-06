@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Scope": {
-            "value": ["___resourceId__"] 
+            "value": ["___resourceId__"]
         },
         "Environment": {
             "value": "__env__"

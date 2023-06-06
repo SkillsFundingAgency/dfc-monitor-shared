@@ -31,9 +31,7 @@
                 "description": "[concat(parameters('Environment'),' SQL database alert - High DTU percentage usage')]",
                 "severity": 1,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -78,9 +76,7 @@
                 "description": "[concat(parameters('Environment'),' SQL database alert - High Log IO percentage usage')]",
                 "severity": 3,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -125,9 +121,7 @@
                 "description": "[concat(parameters('Environment'),' SQL database alert - High CPU Usage')]",
                 "severity": 4,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {

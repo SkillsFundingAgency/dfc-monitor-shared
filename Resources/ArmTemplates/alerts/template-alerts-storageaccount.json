@@ -31,9 +31,7 @@
                 "description": "[concat(parameters('Environment'),' Premium File Share alert - capacity at 95%')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT5M",
                 "windowSize": "PT1H",
                 "criteria": {
@@ -73,9 +71,7 @@
                 "description": "[concat(parameters('Environment'),' Blob Storage - Usage throttled')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT5M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -117,9 +113,7 @@
                 "description": "[concat(parameters('Environment'),' Premium File Share alert - Usage throttled')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT5M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -161,9 +155,7 @@
                 "description": "[concat(parameters('Environment'),' Blob Storage - Request success 99% or lower')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT15M",
                 "criteria": {
