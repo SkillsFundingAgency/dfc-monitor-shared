@@ -65,18 +65,18 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-files-throttled')]",
+            "name": "[concat('alert-',parameters('Environment'),'-blob-throttled')]",
             "location": "global",
             "tags": {
-                           },
+                },
             "properties": {
-                "description": "[concat(parameters('Environment'),' Premium File Share alert - Usage throttled')]",
+                "description": "[concat(parameters('Environment'),' Blob Storage - Usage throttled')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": [
                     "[parameters('Scope')]"
                 ],
-                "evaluationFrequency": "PT1M",
+                "evaluationFrequency": "PT5M",
                 "windowSize": "PT5M",
                 "criteria": {
                     "allOf": [
@@ -87,18 +87,61 @@
                                 "minFailingPeriodsToAlert": 4
                             },
                             "name": "Metric1",
-                            "metricNamespace": "Microsoft.Storage/storageAccounts",
+                            "metricNamespace": "microsoft.storage/storageaccounts/blobservices",
                             "metricName": "Transactions",
-                            "operator": "GreaterThan",
+                            "operator": "GreaterOrLessThan",
                             "timeAggregation": "Total",
-                            "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "autoMitigate": true,
-                "targetResourceType": "Microsoft.Storage/storageAccounts",
+                "targetResourceType": "Microsoft.Storage/storageAccounts/blobServices",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-files-throttled')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('Environment'),' Premium File Share alert - Usage throttled')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": [
+                    "[parameters('Scope')]"
+                ],
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "microsoft.storage/storageaccounts/fileservices",
+                            "metricName": "Transactions",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Total",
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Storage/storageAccounts/fileServices",
                 "targetResourceRegion": "westeurope",
                 "actions": [
                     {
