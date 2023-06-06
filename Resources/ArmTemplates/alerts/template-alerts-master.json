@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2017-05-10/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
        "Scope": {
@@ -22,7 +22,7 @@
     "resources": [
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2021-04-01",
+        "apiVersion": "2017-05-10",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -51,7 +51,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2021-04-01",
+        "apiVersion": "2017-05-10",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -80,7 +80,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2021-04-01",
+        "apiVersion": "2017-05-10",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -109,7 +109,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2021-04-01",
+        "apiVersion": "2017-05-10",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
