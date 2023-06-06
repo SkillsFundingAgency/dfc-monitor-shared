@@ -22,7 +22,7 @@
     "resources": [
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2017-05-10",
+        "apiVersion": "2016-06-01",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -51,7 +51,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2017-05-10",
+        "apiVersion": "2016-06-01",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -80,7 +80,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2017-05-10",
+        "apiVersion": "2016-06-01",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
@@ -109,7 +109,7 @@
       },
       {
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2017-05-10",
+        "apiVersion": "2016-06-01",
         "name": "linkedTemplate",
         "properties": {
           "mode": "Incremental",
