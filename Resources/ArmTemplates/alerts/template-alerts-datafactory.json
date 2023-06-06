@@ -33,9 +33,7 @@
                 "severity": 2,
                 "enabled": true,
                 "evaluationFrequency": "PT10M",
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "targetResourceTypes": [
                     "microsoft.datafactory/factories"
                 ],
@@ -80,9 +78,7 @@
                 "severity": 2,
                 "enabled": true,
                 "evaluationFrequency": "PT10M",
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "targetResourceTypes": [
                     "microsoft.datafactory/factories"
                 ],
@@ -127,9 +123,7 @@
                 "severity": 2,
                 "enabled": true,
                 "evaluationFrequency": "PT10M",
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "targetResourceTypes": [
                     "microsoft.datafactory/factories"
                 ],
