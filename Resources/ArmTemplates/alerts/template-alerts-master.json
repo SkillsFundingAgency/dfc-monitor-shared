@@ -23,7 +23,7 @@
       {
         "type": "Microsoft.Resources/deployments",
         "apiVersion": "2016-06-01",
-        "name": "linkedTemplate",
+        "name": "alerts-datafactory",
         "properties": {
           "mode": "Incremental",
           "templateLink": {
@@ -52,7 +52,7 @@
       {
         "type": "Microsoft.Resources/deployments",
         "apiVersion": "2016-06-01",
-        "name": "linkedTemplate",
+        "name": "alerts-keyvault",
         "properties": {
           "mode": "Incremental",
           "templateLink": {
@@ -81,7 +81,7 @@
       {
         "type": "Microsoft.Resources/deployments",
         "apiVersion": "2016-06-01",
-        "name": "linkedTemplate",
+        "name": "alerts-sqldatabase",
         "properties": {
           "mode": "Incremental",
           "templateLink": {
@@ -110,7 +110,7 @@
       {
         "type": "Microsoft.Resources/deployments",
         "apiVersion": "2016-06-01",
-        "name": "linkedTemplate",
+        "name": "alerts-storageaccount",
         "properties": {
           "mode": "Incremental",
           "templateLink": {
