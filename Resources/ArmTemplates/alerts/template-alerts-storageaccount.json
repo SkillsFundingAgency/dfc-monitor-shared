@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Scope": {
-            "type": "string"
+            "type": "array"
         },
         "Environment": {
             "type": "string"
@@ -49,7 +49,7 @@
                             "criterionType": "StaticThresholdCriterion"
                         }
                     ],
-                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "autoMitigate": true,
                 "targetResourceType": "Microsoft.Storage/storageAccounts",
@@ -179,7 +179,7 @@
                             "criterionType": "StaticThresholdCriterion"
                         }
                     ],
-                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "autoMitigate": true,
                 "targetResourceType": "Microsoft.Storage/storageAccounts",
