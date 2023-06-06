@@ -1,0 +1,142 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+       "Scope": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+        "name": "linkedTemplate",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-monitor-shared/alerting/Resources/ArmTemplates/alerts/template-alerts-datafactory.json",
+            "contentVersion":"1.0.0.0"
+          },
+          "parameters": {
+            "Scope": {
+            "value": "[parameters('Scope')]"
+            },
+            "Environment": {
+            "value": "[parameters('Environment')]"
+            },
+            "ActionGroupStakeholdersId": {
+            "value": "[parameters('ActionGroupStakeholdersId')]"
+            },
+            "ActionGroupBauId": {
+            "value": "[parameters('ActionGroupBauId')]"
+            },
+            "ActionGroupOncallId": {
+            "value": "[parameters('ActionGroupOncallId')]"
+            }
+          }
+        }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+        "name": "linkedTemplate",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-monitor-shared/alerting/Resources/ArmTemplates/alerts/template-alerts-keyvault.json",
+            "contentVersion":"1.0.0.0"
+          },
+          "parameters": {
+            "Scope": {
+            "value": "[parameters('Scope')]"
+            },
+            "Environment": {
+            "value": "[parameters('Environment')]"
+            },
+            "ActionGroupStakeholdersId": {
+            "value": "[parameters('ActionGroupStakeholdersId')]"
+            },
+            "ActionGroupBauId": {
+            "value": "[parameters('ActionGroupBauId')]"
+            },
+            "ActionGroupOncallId": {
+            "value": "[parameters('ActionGroupOncallId')]"
+            }
+          }
+        }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+        "name": "linkedTemplate",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-monitor-shared/alerting/Resources/ArmTemplates/alerts/template-alerts-sqldatabase.json",
+            "contentVersion":"1.0.0.0"
+          },
+          "parameters": {
+            "Scope": {
+            "value": "[parameters('Scope')]"
+            },
+            "Environment": {
+            "value": "[parameters('Environment')]"
+            },
+            "ActionGroupStakeholdersId": {
+            "value": "[parameters('ActionGroupStakeholdersId')]"
+            },
+            "ActionGroupBauId": {
+            "value": "[parameters('ActionGroupBauId')]"
+            },
+            "ActionGroupOncallId": {
+            "value": "[parameters('ActionGroupOncallId')]"
+            }
+          }
+        }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+        "name": "linkedTemplate",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri":"https://raw.githubusercontent.com/SkillsFundingAgency/dfc-monitor-shared/alerting/Resources/ArmTemplates/alerts/template-alerts-storageaccount.json",
+            "contentVersion":"1.0.0.0"
+          },
+          "parameters": {
+            "Scope": {
+            "value": "[parameters('Scope')]"
+            },
+            "Environment": {
+            "value": "[parameters('Environment')]"
+            },
+            "ActionGroupStakeholdersId": {
+            "value": "[parameters('ActionGroupStakeholdersId')]"
+            },
+            "ActionGroupBauId": {
+            "value": "[parameters('ActionGroupBauId')]"
+            },
+            "ActionGroupOncallId": {
+            "value": "[parameters('ActionGroupOncallId')]"
+            }
+          }
+        }
+      }
+    ],
+    "outputs": {
+    }
+  }
