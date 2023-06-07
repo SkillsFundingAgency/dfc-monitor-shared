@@ -1,0 +1,111 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "array"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        },
+        "QueryFilter":{
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/activitylogalerts",
+            "apiVersion": "2020-10-01",
+            "name": "alert-servicehealth-degraded",
+            "location": "global",
+            "tags": {
+            },
+            "properties": {
+                "scopes": "[parameters('Scope')]",
+                "condition": {
+                    "allOf": [
+                        {
+                            "field": "category",
+                            "equals": "ServiceHealth"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "field": "properties.incidentType",
+                                    "equals": "Incident"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "properties.impactedServices[*].ImpactedRegions[*].RegionName",
+                            "containsAny": [
+                                "West Europe",
+                                "Global"
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                        "webhookProperties": {}
+                            
+                },
+                "enabled": true,
+                "description": "Azure platform hosting and service degraded"
+            }
+        },
+        {
+            "type": "microsoft.insights/activitylogalerts",
+            "apiVersion": "2020-10-01",
+            "name": "alert-resourcehealth-degraded",
+            "location": "global",
+            "tags": {
+            },
+            "properties": {
+                "scopes": "[parameters('Scope')]",
+                "condition": {
+                    "allOf": [
+                        {
+                            "field": "category",
+                            "equals": "ResourceHealth"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "field": "properties.currentHealthStatus",
+                                    "equals": "Degraded"
+                                },
+                                {
+                                    "field": "properties.currentHealthStatus",
+                                    "equals": "Unavailable"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "actionGroups": [
+                        {
+                            "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                            "webhookProperties": {}
+                        }
+                    ]
+                },
+                "enabled": true,
+                "description": "Azure resource availability degraded"
+            }
+        }
+    ]
+}
