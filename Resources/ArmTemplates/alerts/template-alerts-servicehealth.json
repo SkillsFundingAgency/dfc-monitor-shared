@@ -13,16 +13,16 @@
         }
     },
     "variables": {},
-    "resources": [
+      "resources": [
         {
             "type": "microsoft.insights/activitylogalerts",
             "apiVersion": "2020-10-01",
             "name": "alert-servicehealth-degraded",
             "location": "global",
-            "tags": {
-            },
             "properties": {
-                "scopes": "[subscription().subscriptionId]",
+                "scopes": [
+                    "[concat('/subscriptions/',subscription().subscriptionId)]"
+                ],
                 "condition": {
                     "allOf": [
                         {
@@ -79,16 +79,12 @@
                     ]
                 },
                 "actions": {
-                    "actionGroups": [
-                        "[parameters('ActionGroupOncallId')]"
-                    ],
-                        "webhookProperties": {}
-                            
+                    "actionGroups": []
                 },
                 "enabled": true,
                 "description": "Azure platform hosting and service degraded"
             }
-        },
+         },
         {
             "type": "microsoft.insights/activitylogalerts",
             "apiVersion": "2020-10-01",
@@ -97,7 +93,9 @@
             "tags": {
             },
             "properties": {
-                "scopes": "[subscription().subscriptionId]",
+                "scopes": [
+                    "[concat('/subscriptions/',subscription().subscriptionId)]"
+                ],
                 "condition": {
                     "allOf": [
                         {
