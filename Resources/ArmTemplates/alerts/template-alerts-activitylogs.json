@@ -2,9 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "Scope": {
-            "type": "array"
-        },
         "Environment": {
             "type": "string"
         },
@@ -36,12 +33,12 @@
                 "severity": 3,
                 "enabled": true,
                 "evaluationFrequency": "PT10M",
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
                 "windowSize": "PT10M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "[concat('AzureActivity | where OperationNameValue == \"MICROSOFT.AUTHORIZATION/LOCKS/DELETE\" | ',parameters('QueryFilter'))]",
+                            "query": "[concat('AzureActivity | where OperationNameValue == \"MICROSOFT.AUTHORIZATION/LOCKS/DELETE\" | ', parameters('QueryFilter'))]",
                             //"AzureActivity\n| where OperationNameValue == \"MICROSOFT.AUTHORIZATION/LOCKS/DELETE\"\n| where ResourceGroup has \"dfc-dev\" or ResourceGroup has \"dss-at\"\n",
                             "timeAggregation": "Count",
                             "dimensions": [],
@@ -78,7 +75,7 @@
                 "severity": 4,
                 "enabled": false,
                 "evaluationFrequency": "P1D",
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
                 "windowSize": "P1D",
                 "criteria": {
                     "allOf": [
@@ -118,12 +115,12 @@
                 "severity": 3,
                 "enabled": false,
                 "evaluationFrequency": "PT30M",
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
                 "windowSize": "PT30M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "[concat('AzureActivity\n| where OperationNameValue contains \"delete\"\n| ',parameters('QueryFilter'))]",
+                            "query": "[concat('AzureActivity | where OperationNameValue contains \"delete\" | ',parameters('QueryFilter'))]",
                             "timeAggregation": "Count",
                             "dimensions": [],
                             "resourceIdColumn": "ResourceId",
