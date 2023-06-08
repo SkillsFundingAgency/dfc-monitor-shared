@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Scope": {
-            "type": "string"
+            "type": "Array"
         },
         "BaseName": {
             "type": "string"
@@ -197,9 +197,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average data transferred inbound')]",
                 "severity": 3,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -241,9 +239,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average data transferred outbound')]",
                 "severity": 3,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -285,9 +281,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average handle count')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -329,9 +323,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 4xx errors')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -373,9 +365,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 5xx errors')]",
                 "severity": 2,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -416,9 +406,7 @@
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - High current requests')]",
                 "severity": 3,
                 "enabled": true,
-                "scopes": [
-                    "[parameters('Scope')]"
-                ],
+                "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
