@@ -5,9 +5,6 @@
         "Scope": {
             "type": "array"
         },
-        "Environment": {
-            "type": "string"
-        },
         "ActionGroupStakeholdersId": {
             "type": "string"
         },
@@ -15,9 +12,6 @@
             "type": "string"
         },
         "ActionGroupOncallId": {
-            "type": "string"
-        },
-        "QueryFilter":{
             "type": "string"
         }
     },
@@ -31,7 +25,7 @@
             "tags": {
             },
             "properties": {
-                "scopes": "[parameters('Scope')]",
+                "scopes": "[subscription().subscriptionId]",
                 "condition": {
                     "allOf": [
                         {
@@ -39,11 +33,43 @@
                             "equals": "ServiceHealth"
                         },
                         {
-                            "anyOf": [
-                                {
-                                    "field": "properties.incidentType",
-                                    "equals": "Incident"
-                                }
+                            "field": "properties.impactedServices[*].ServiceName",
+                            "containsAny": [
+                                "API Management",
+                                "App Service",
+                                "App Service (Linux)",
+                                "App Service (Linux) \\ Web App for Containers",
+                                "App Service (Linux) \\ Web Apps",
+                                "App Service \\ Web Apps",
+                                "Application Gateway",
+                                "Application Insights",
+                                "Functions",
+                                "SQL Database",
+                                "Azure Cosmos DB for PostgreSQL",
+                                "Azure Database for MySQL",
+                                "Azure Database for MySQL flexible servers",
+                                "Azure Database for PostgreSQL",
+                                "Azure Database for PostgreSQL flexible servers",
+                                "Key Vault",
+                                "Data Factory",
+                                "Storage",
+                                "Alerts",
+                                "Alerts & Metrics",
+                                "Advisor",
+                                "Action Groups",
+                                "Activity Logs & Alerts",
+                                "Automation",
+                                "Azure Container Service",
+                                "Azure Container Registry",
+                                "Azure Container Apps",
+                                "Azure DevOps",
+                                "Azure Frontdoor",
+                                "Azure Kubernetes Service (AKS)",
+                                "Azure Load Testing",
+                                "Azure Monitor",
+                                "Backup",
+                                "Event Grid",
+                                "Virtual Network"
                             ]
                         },
                         {
@@ -74,7 +100,7 @@
             "tags": {
             },
             "properties": {
-                "scopes": "[parameters('Scope')]",
+                "scopes": "[subscription().subscriptionId]",
                 "condition": {
                     "allOf": [
                         {
