@@ -65,7 +65,6 @@
             }
         },
         {
-          //  "id": "/subscriptions/962cae10-2950-412a-93e3-d8ae92b17896/resourceGroups/dfc-dev-shared-rg/providers/microsoft.insights/metricAlerts/alert-np-sqldb-LOGIO",
             "name": "[concat('alert-',parameters('Environment'),'-sqldb-LOGIO')]",
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
@@ -110,9 +109,8 @@
             }
         },
         {
-        //    "id": "/subscriptions/962cae10-2950-412a-93e3-d8ae92b17896/resourceGroups/dfc-dev-shared-rg/providers/microsoft.insights/metricAlerts/alert-np-sqldb-CPU",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'--sqldb-CPU')]",
+            "name": "[concat('alert-',parameters('Environment'),'-sqldb-CPU')]",
             "type": "Microsoft.Insights/metricAlerts",
             "location": "global",
             "tags": {

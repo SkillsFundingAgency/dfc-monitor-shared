@@ -5,33 +5,6 @@
         "appInsightsName": {
             "value": "dfc-foo-shared-ai"
         },
-        "actionGroupName1": {
-            "value": "dfc-foo-shared-oncall-ag"
-        },
-        "actionGroupShortName1": {
-            "value": "AG-ONCALL"
-        },
-        "actionGroupEmail1": {
-            "value": "ncs1@automation.com"
-        },
-        "actionGroupName2": {
-            "value": "dfc-foo-shared-support-ag"
-        },
-        "actionGroupShortName2": {
-            "value": "AG-NETCOBAU"
-        },
-        "actionGroupEmail2": {
-            "value": "ncs1@automation.com"
-        },
-        "actionGroupName3": {
-            "value": "dfc-foo-shared-stakeholder-ag"
-        },
-        "actionGroupShortName3": {
-            "value": "AG-NCSSTK"
-        },
-        "actionGroupEmail3": {
-            "value": "ncs1@automation.com"
-        },
         "dashboardName": {
             "value": "dfc-foo-shared-ai-dashboard"
         },

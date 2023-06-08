@@ -8,6 +8,9 @@
         "Environment": {
             "type": "string"
         },
+        "SaName": {
+            "type": "string"
+        },
         "ActionGroupStakeholdersId": {
             "type": "string"
         },
@@ -20,46 +23,46 @@
     },
     "variables": {},
     "resources": [
-        {
-            "type": "microsoft.insights/metricAlerts",
-            "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-files-capacity')]",
-            "location": "global",
-            "tags": {
-             },
-            "properties": {
-                "description": "[concat(parameters('Environment'),' Premium File Share alert - capacity at 95%')]",
-                "severity": 2,
-                "enabled": true,
-                "scopes": "[parameters('Scope')]",
-                "evaluationFrequency": "PT5M",
-                "windowSize": "PT1H",
-                "criteria": {
-                    "allOf": [
-                        {
-                            "threshold": 5222680231936,
-                            "name": "Metric1",
-                            "metricNamespace": "Microsoft.Storage/storageAccounts",
-                            "metricName": "UsedCapacity",
-                            "operator": "GreaterThanOrEqual",
-                            "timeAggregation": "Average",
-                            "skipMetricValidation": false,
-                            "criterionType": "StaticThresholdCriterion"
-                        }
-                    ],
-                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
-                },
-                "autoMitigate": true,
-                "targetResourceType": "Microsoft.Storage/storageAccounts",
-                "targetResourceRegion": "westeurope",
-                "actions": [
-                    {
-                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
-                        "webHookProperties": {}
-                    }
-                ]
-            }
-        },
+        // {
+        //     "type": "microsoft.insights/metricAlerts",
+        //     "apiVersion": "2018-03-01",
+        //     "name": "[concat('alert-',parameters('Environment'),'-files-capacity')]",
+        //     "location": "global",
+        //     "tags": {
+        //      },
+        //     "properties": {
+        //         "description": "[concat(parameters('Environment'),' Premium File Share alert - capacity at 95%')]",
+        //         "severity": 2,
+        //         "enabled": true,
+        //         "scopes": "[parameters('Scope')]",
+        //         "evaluationFrequency": "PT5M",
+        //         "windowSize": "PT1H",
+        //         "criteria": {
+        //             "allOf": [
+        //                 {
+        //                     "threshold": 5222680231936,
+        //                     "name": "Metric1",
+        //                     "metricNamespace": "Microsoft.Storage/storageAccounts",
+        //                     "metricName": "UsedCapacity",
+        //                     "operator": "GreaterThanOrEqual",
+        //                     "timeAggregation": "Average",
+        //                     "skipMetricValidation": false,
+        //                     "criterionType": "StaticThresholdCriterion"
+        //                 }
+        //             ],
+        //             "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+        //         },
+        //         "autoMitigate": true,
+        //         "targetResourceType": "Microsoft.Storage/storageAccounts",
+        //         "targetResourceRegion": "westeurope",
+        //         "actions": [
+        //             {
+        //                 "actionGroupId": "[parameters('ActionGroupOncallId')]",
+        //                 "webHookProperties": {}
+        //             }
+        //         ]
+        //     }
+        // },
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
@@ -106,7 +109,7 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-files-throttled')]",
+            "name": "[concat('alert-',parameters('Environment'),parameters('SaName'),'-files-throttled')]",
             "location": "global",
             "tags": {},
             "properties": {
