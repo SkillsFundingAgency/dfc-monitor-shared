@@ -181,7 +181,7 @@
             }
         },
         {
-             "type": "microsoft.insights/scheduledqueryrules",
+            "type": "microsoft.insights/scheduledqueryrules",
             "apiVersion": "2023-03-15-preview",
             "name": "[concat('alert-',parameters('Environment'),'-aks-podfailed')]",
             "location": "westeurope",
@@ -192,7 +192,7 @@
                 "severity": 0,
                 "enabled": false,
                 "evaluationFrequency": "PT5M",
-                                "scopes": ["[parameters('Scope')]"],
+                "scopes": ["[parameters('Scope')]"],
                 "targetResourceTypes": [
                     "microsoft.containerservice/managedclusters"
                 ],
