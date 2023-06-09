@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Scope": {
-            "value": ["___resourceId__"]
+            "value": "___resourceId__"
         },
         "Environment": {
             "value": "__env__"
@@ -16,9 +16,6 @@
         },
         "ActionGroupOncallId": {
             "value": "__ActionGroupBauId__"
-        },
-        "QueryFilter": {
-            "value": "__QueryFilter__"
         }
     }
 }

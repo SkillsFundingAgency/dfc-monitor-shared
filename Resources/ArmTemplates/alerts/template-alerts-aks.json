@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "Scope": {
-            "type": "array"
+            "type": "string"
         },
         "Environment": {
             "type": "string"
@@ -15,9 +15,6 @@
             "type": "string"
         },
         "ActionGroupOncallId": {
-            "type": "string"
-        },
-        "QueryFilter":{
             "type": "string"
         }
     },
@@ -33,7 +30,7 @@
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High CPU usage')]",
                 "severity": 1,
                 "enabled": true,
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -72,7 +69,7 @@
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High Memory usage')]",
                 "severity": 1,
                 "enabled": true,
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -111,7 +108,7 @@
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High Disk usage')]",
                 "severity": 1,
                 "enabled": true,
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
@@ -152,7 +149,7 @@
                 "severity": 0,
                 "enabled": true,
                 "evaluationFrequency": "PT5M",
-                "scopes": "[parameters('Scope')]",
+                "scopes": ["[parameters('Scope')]"],
                 "targetResourceTypes": [
                     "microsoft.containerservice/managedclusters"
                 ],
@@ -195,7 +192,7 @@
                 "severity": 0,
                 "enabled": false,
                 "evaluationFrequency": "PT5M",
-                "scopes": "[parameters('Scope')]",
+                                "scopes": ["[parameters('Scope')]"],
                 "targetResourceTypes": [
                     "microsoft.containerservice/managedclusters"
                 ],
