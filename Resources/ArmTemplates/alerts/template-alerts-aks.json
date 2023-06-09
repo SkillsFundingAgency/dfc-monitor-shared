@@ -181,46 +181,51 @@
             }
         },
         {
-            "type": "microsoft.insights/scheduledqueryrules",
-            "apiVersion": "2023-03-15-preview",
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
             "name": "[concat('alert-',parameters('Environment'),'-aks-podfailed')]",
-            "location": "westeurope",
-            "tags": {},
+            "location": "global",
+            "tags": {
+                "Environment": "Dev/Test",
+                "Product": "Digital First Career Service (DFCS) Website (PP)",
+                "Service Offering": "Digital First Career Service (DFCS) Website (PP)"
+            },
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-aks-podfailed')]",
                 "description": "[concat(parameters('Environment'),' AKS Container alert - One or more pods are in a failed state')]",
-                "severity": 0,
-                "enabled": false,
-                "evaluationFrequency": "PT5M",
+                "severity": 1,
+                "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
-                "targetResourceTypes": [
-                    "microsoft.containerservice/managedclusters"
-                ],
+                "evaluationFrequency": "PT1M",
                 "windowSize": "PT5M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "KubePodInventory\n| where PodStatus =~ \"Failed\"",
-                            "timeAggregation": "Count",
-                            "dimensions": [],
-                            "resourceIdColumn": "_ResourceId",
-                            "operator": "GreaterThanOrEqual",
-                            "threshold": 1,
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 1
-                            }
+                            "threshold": 0,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.ContainerService/managedClusters",
+                            "metricName": "kube_pod_status_phase",
+                            "dimensions": [
+                                {
+                                    "name": "phase",
+                                    "operator": "Include",
+                                    "values": [
+                                        "Failed"
+                                    ]
+                                }
+                            ],
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
                         }
-                    ]
-                },
-                "autoMitigate": false,
-                "actions": {
-                    "actionGroups": [
-                        "[parameters('ActionGroupOncallId')]"
                     ],
-                    "customProperties": {},
-                    "actionProperties": {}
-                }
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.ContainerService/managedClusters",
+                "targetResourceRegion": "westeurope",
+                "actions": []
             }
         }
     ]
