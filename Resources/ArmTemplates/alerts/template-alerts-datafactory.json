@@ -20,139 +20,133 @@
     },
     "variables": {},
     "resources": [
-               {
-            "type": "microsoft.insights/scheduledqueryrules",
-            "apiVersion": "2023-03-15-preview",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedruna')]",
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedActivityRun')]",
             "location": "westeurope",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedruna')]",
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedActivityRun')]",
                 "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Activity Run')]",
+                "scopes": "[parameters('Scope')]",
                 "severity": 2,
                 "enabled": true,
-                "evaluationFrequency": "PT10M",
-                "scopes": "[parameters('Scope')]",
-                "targetResourceTypes": [
-                    "microsoft.datafactory/factories"
-                ],
-                "windowSize": "PT10M",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "ADFActivityRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded'\n| where FailureType != 'UserError'",
-                            // "AzureActivity\n| where ActivityStatus has \"Failed\"\n",
-                            "timeAggregation": "Count",
-                            "dimensions": [],
-                            "resourceIdColumn": "Resource",
-                            "operator": "GreaterThanOrEqual",
-                            "threshold": 1,
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 1,
-                                "minFailingPeriodsToAlert": 1
-                            }
+                            "threshold": 0,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.DataFactory/factories",
+                            "metricName": "ActivityFailedRuns",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Total",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
                         }
-                    ]
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
                 },
-                "autoMitigate": false,
-                "actions": {
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.DataFactory/factories",
+                "targetResourceRegion": "westeurope",
+                "actions": [{
                     "actionGroups": [
                         "[parameters('ActionGroupOncallId')]"
                     ],
                     "customProperties": {},
                     "actionProperties": {}
-                }
+                }]
+            
             }
         },
         {
-            "type": "microsoft.insights/scheduledqueryrules",
-            "apiVersion": "2023-03-15-preview",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunp')]",
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedPipelineRun')]",
             "location": "westeurope",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunp')]",
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedPipelineRun')]",
                 "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Pipeline Run')]",
                 "severity": 2,
                 "enabled": true,
-                "evaluationFrequency": "PT10M",
                 "scopes": "[parameters('Scope')]",
                 "targetResourceTypes": [
                     "microsoft.datafactory/factories"
                 ],
-                "windowSize": "PT10M",
+                "targetResourceRegion": "westeurope",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "ADFPipelineRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded'\n| where FailureType != 'UserError'",
-                            //"AzureActivity\n| where ActivityStatus has \"Failed\"\n",
-                            "timeAggregation": "Count",
-                            "dimensions": [],
-                            "resourceIdColumn": "Resource",
-                            "operator": "GreaterThanOrEqual",
-                            "threshold": 1,
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 1,
-                                "minFailingPeriodsToAlert": 1
-                            }
+                            "threshold": 0,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.DataFactory/factories",
+                            "metricName": "TriggerFailedRuns",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Total",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
                         }
-                    ]
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
                 },
-                "autoMitigate": false,
-                "actions": {
+                "autoMitigate": true,
+                "actions": [{
                     "actionGroups": [
                         "[parameters('ActionGroupOncallId')]"
                     ],
                     "customProperties": {},
                     "actionProperties": {}
-                }
+                }]
             }
         },
         {
-            "type": "microsoft.insights/scheduledqueryrules",
-            "apiVersion": "2023-03-15-preview",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunt')]",
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedTriggerRun')]",
             "location": "westeurope",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedrunt')]",
+                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedTriggerRun')]",
                 "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Trigger Run')]",
                 "severity": 2,
                 "enabled": true,
-                "evaluationFrequency": "PT10M",
                 "scopes": "[parameters('Scope')]",
-                "targetResourceTypes": [
-                    "microsoft.datafactory/factories"
-                ],
-                "windowSize": "PT10M",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "ADFTriggerRun\n| where Status != 'InProgress' and Status != 'Queued' and Status != 'Succeeded' and Status != 'WaitingOnDependency'\n| where FailureType != 'UserError'",
-                            //"AzureActivity\n| where ActivityStatus has \"Failed\"\n",
-                            "timeAggregation": "Count",
-                            "dimensions": [],
-                            "resourceIdColumn": "_ResourceId",
+                            "threshold": 0,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.DataFactory/factories",
+                            "metricName": "TriggerFailedRuns",
                             "operator": "GreaterThan",
-                            "threshold": 1,
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 1,
-                                "minFailingPeriodsToAlert": 1
-                            }
+                            "timeAggregation": "Total",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
                         }
-                    ]
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
                 },
-                "autoMitigate": false,
-                "actions": {
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.DataFactory/factories",
+                "targetResourceRegion": "westeurope",
+                "actions": [{
                     "actionGroups": [
                         "[parameters('ActionGroupOncallId')]"
                     ],
                     "customProperties": {},
                     "actionProperties": {}
-                }
+                }]
             }
         }
     ]
