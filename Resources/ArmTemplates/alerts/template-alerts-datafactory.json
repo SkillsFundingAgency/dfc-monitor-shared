@@ -8,6 +8,9 @@
         "Environment": {
             "type": "string"
         },
+        "BaseName": {
+            "type": "string"
+        },
         "ActionGroupStakeholdersId": {
             "type": "string"
         },
@@ -23,13 +26,13 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedActivityRun')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-datafactory-failedActivityRun')]",
             "location": "global",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedActivityRun')]",
-                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Activity Run')]",
+                "displayName": "[concat('alert-',parameters('BaseName'),'-datafactory-failedActivityRun')]",
+                "description": "[concat(parameters('BaseName'),' Data Factory alert - Failed Activity Run')]",
                 "scopes": "[parameters('Scope')]",
                 "severity": 2,
                 "enabled": true,
@@ -65,13 +68,13 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedPipelineRun')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-datafactory-failedPipelineRun')]",
             "location": "global",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedPipelineRun')]",
-                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Pipeline Run')]",
+                "displayName": "[concat('alert-',parameters('BaseName'),'-datafactory-failedPipelineRun')]",
+                "description": "[concat(parameters('BaseName'),' Data Factory alert - Failed Pipeline Run')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
@@ -108,13 +111,13 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedTriggerRun')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-datafactory-failedTriggerRun')]",
             "location": "global",
             "tags": {
             },
             "properties": {
-                "displayName": "[concat('alert-',parameters('Environment'),'-datafactory-failedTriggerRun')]",
-                "description": "[concat(parameters('Environment'),' Data Factory alert - Failed Trigger Run')]",
+                "displayName": "[concat('alert-',parameters('BaseName'),'-datafactory-failedTriggerRun')]",
+                "description": "[concat(parameters('BaseName'),' Data Factory alert - Failed Trigger Run')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",

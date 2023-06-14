@@ -16,6 +16,9 @@
         },
         "ActionGroupOncallId": {
             "value": "__ActionGroupBauId__"
-        }
+        },
+        "BaseName": {
+            "type": "string"
+        },
     }
 }
