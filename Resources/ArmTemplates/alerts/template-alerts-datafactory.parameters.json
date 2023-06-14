@@ -18,7 +18,7 @@
             "value": "__ActionGroupBauId__"
         },
         "BaseName": {
-            "type": "string"
+            "value": "__BaseName__"
         },
     }
 }
