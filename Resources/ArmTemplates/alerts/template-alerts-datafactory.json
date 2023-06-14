@@ -53,13 +53,12 @@
                 "autoMitigate": true,
                 "targetResourceType": "Microsoft.DataFactory/factories",
                 "targetResourceRegion": "westeurope",
-                "actions": [{
-                    "actionGroups": [
-                        "[parameters('ActionGroupOncallId')]"
-                    ],
-                    "customProperties": {},
-                    "actionProperties": {}
-                }]
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
             
             }
         },
@@ -98,13 +97,12 @@
                     "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
                 },
                 "autoMitigate": true,
-                "actions": [{
-                    "actionGroups": [
-                        "[parameters('ActionGroupOncallId')]"
-                    ],
-                    "customProperties": {},
-                    "actionProperties": {}
-                }]
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
             }
         },
         {
@@ -140,13 +138,12 @@
                 "autoMitigate": true,
                 "targetResourceType": "Microsoft.DataFactory/factories",
                 "targetResourceRegion": "westeurope",
-                "actions": [{
-                    "actionGroups": [
-                        "[parameters('ActionGroupOncallId')]"
-                    ],
-                    "customProperties": {},
-                    "actionProperties": {}
-                }]
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
             }
         }
     ]
