@@ -24,7 +24,7 @@
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
             "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedActivityRun')]",
-            "location": "westeurope",
+            "location": "global",
             "tags": {
             },
             "properties": {
@@ -66,7 +66,7 @@
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
             "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedPipelineRun')]",
-            "location": "westeurope",
+            "location": "global",
             "tags": {
             },
             "properties": {
@@ -109,7 +109,7 @@
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
             "name": "[concat('alert-',parameters('Environment'),'-datafactory-failedTriggerRun')]",
-            "location": "westeurope",
+            "location": "global",
             "tags": {
             },
             "properties": {
