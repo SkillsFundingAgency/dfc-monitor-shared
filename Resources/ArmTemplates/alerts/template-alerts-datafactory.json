@@ -5,9 +5,6 @@
         "Scope": {
             "type": "array"
         },
-        "Environment": {
-            "type": "string"
-        },
         "BaseName": {
             "type": "string"
         },

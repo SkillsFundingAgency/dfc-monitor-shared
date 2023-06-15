@@ -8,9 +8,6 @@
         "BaseName": {
             "value": "__env__"
         },
-        "SaName": {
-            "value": "__SaName__"
-        },
         "ActionGroupStakeholdersId": {
             "value": "__ActionGroupStakeholdersId__"
         },

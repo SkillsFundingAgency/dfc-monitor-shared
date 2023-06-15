@@ -8,9 +8,6 @@
         "BaseName": {
             "type": "string"
         },
-        "SaName": {
-            "type": "string"
-        },
         "ActionGroupStakeholdersId": {
             "type": "string"
         },
@@ -106,7 +103,7 @@
         {
             "type": "microsoft.insights/scheduledqueryrules",
             "apiVersion": "2023-03-15-preview",
-            "name": "[concat('alert-',parameters('BaseName'),parameters('SaName'),'-files-throttled')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-files-throttled')]",
             "location": "westeurope",
             "tags": {},
             "properties": {

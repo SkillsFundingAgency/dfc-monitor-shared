@@ -5,9 +5,6 @@
         "Scope": {
             "value": ["___resourceId__"]
         },
-        "Environment": {
-            "value": "__env__"
-        },
         "ActionGroupStakeholdersId": {
             "value": "__ActionGroupStakeholdersId__"
         },
