@@ -5,7 +5,7 @@
         "Scope": {
             "type": "array"
         },
-        "Environment": {
+        "BaseName": {
             "type": "string"
         },
         "SaName": {
@@ -26,12 +26,12 @@
         // {
         //     "type": "microsoft.insights/metricAlerts",
         //     "apiVersion": "2018-03-01",
-        //     "name": "[concat('alert-',parameters('Environment'),'-files-capacity')]",
+        //     "name": "[concat('alert-',parameters('BaseName'),'-files-capacity')]",
         //     "location": "global",
         //     "tags": {
         //      },
         //     "properties": {
-        //         "description": "[concat(parameters('Environment'),' Premium File Share alert - capacity at 95%')]",
+        //         "description": "[concat(parameters('BaseName'),' Premium File Share alert - capacity at 95%')]",
         //         "severity": 2,
         //         "enabled": true,
         //         "scopes": "[parameters('Scope')]",
@@ -64,114 +64,112 @@
         //     }
         // },
         {
-            "type": "microsoft.insights/metricAlerts",
-            "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-blob-throttled')]",
-            "location": "global",
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('BaseName'),'-blob-throttled')]",
+            "location": "westeurope",
             "tags": {
                 },
             "properties": {
-                "description": "[concat(parameters('Environment'),' Blob Storage - Usage throttled')]",
+                "description": "[concat(parameters('BaseName'),' Blob Storage - Usage throttled')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
-                "evaluationFrequency": "PT5M",
-                "windowSize": "PT5M",
-                "criteria": {
+                "evaluationFrequency": "PT15M",
+                "windowSize": "PT15M",
+                "overrideQueryTimeRange": "P2D",
+                "targetResourceTypes": [
+                    "Microsoft.Storage/storageAccounts"
+                ],
+                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
-                            "name": "Metric1",
-                            "metricNamespace": "microsoft.storage/storageaccounts/blobservices",
-                            "metricName": "Transactions",
-                            "operator": "GreaterOrLessThan",
-                            "timeAggregation": "Total",
-                            "criterionType": "DynamicThresholdCriterion"
-                        }
-                    ],
-                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
-                },
-                "autoMitigate": true,
-                "targetResourceType": "Microsoft.Storage/storageAccounts/blobServices",
-                "targetResourceRegion": "westeurope",
-                "actions": [
-                    {
-                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
-                        "webHookProperties": {}
-                    }
-                ]
-            }
-        },
-        {
-            "type": "microsoft.insights/metricAlerts",
-            "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),parameters('SaName'),'-files-throttled')]",
-            "location": "global",
-            "tags": {},
-            "properties": {
-                "description": "[concat(parameters('Environment'),' Premium File Share alert - Usage throttled')]",
-                "severity": 2,
-                "enabled": true,
-                "scopes": "[parameters('Scope')]",
-                "evaluationFrequency": "PT5M",
-                "windowSize": "PT5M",
-                "criteria": {
-                    "allOf": [
-                        {
-                            "alertSensitivity": "Medium",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
-                            "name": "Metric1",
-                            "metricNamespace": "microsoft.storage/storageaccounts/fileservices",
-                            "metricName": "Transactions",
+                            "query": "// To create an alert for this query, click '+ New alert rule'\nStorageBlobLogs\n| where TimeGenerated > ago(3d) and StatusText contains \"ServerBusy\"\n| project TimeGenerated, OperationName, StatusCode, StatusText, _ResourceId\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
                             "operator": "GreaterThan",
-                            "timeAggregation": "Total",
-                            "criterionType": "DynamicThresholdCriterion"
+                            "threshold": 0,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
                         }
-                    ],
-                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                    ]
                 },
-                "autoMitigate": true,
-                "targetResourceType": "Microsoft.Storage/storageAccounts/fileServices",
-                "targetResourceRegion": "westeurope",
-                "actions": [
-                    {
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                    "webHookProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('BaseName'),parameters('SaName'),'-files-throttled')]",
+            "location": "westeurope",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Premium File Share alert - Usage throttled')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT15M",
+                "windowSize": "PT15M",
+                "overrideQueryTimeRange": "P2D",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "// To create an alert for this query, click '+ New alert rule'\nStorageFileLogs\n| where TimeGenerated > ago(3d) and StatusText contains \"ServerBusy\"\n| project TimeGenerated, OperationName, StatusCode, StatusText, _ResourceId\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "operator": "GreaterThan",
+                            "threshold": 0,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "targetResourceTypes": [
+                    "Microsoft.Storage/storageAccounts"
+                ],
+                "actions": {
                         "actionGroupId": "[parameters('ActionGroupOncallId')]",
                         "webHookProperties": {}
-                    }
-                ]
+                }
             }
         },
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-blob-requests')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-blob-requests')]",
             "location": "global",
             "tags": {},
             "properties": {
-                "description": "[concat(parameters('Environment'),' Blob Storage - Request success 99% or lower')]",
+                "description": "[concat(parameters('BaseName'),' Blob Storage - Request success 99% or lower')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
-                "evaluationFrequency": "PT1M",
+                "evaluationFrequency": "PT5M",
                 "windowSize": "PT15M",
                 "criteria": {
                     "allOf": [
                         {
-                            "threshold": 99,
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Storage/storageAccounts",
-                            "metricName": "Availability",
-                            "operator": "LessThanOrEqual",
-                            "timeAggregation": "Average",
+                            "metricName": "Transactions",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Total",
                             "skipMetricValidation": false,
-                            "criterionType": "StaticThresholdCriterion"
+                            "criterionType": "DynamicThresholdCriterion"
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"

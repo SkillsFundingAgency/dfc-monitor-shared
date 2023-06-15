@@ -5,7 +5,7 @@
         "Scope": {
             "value": ["___resourceId__"]
         },
-        "Environment": {
+        "BaseName": {
             "value": "__env__"
         },
         "SaName": {
