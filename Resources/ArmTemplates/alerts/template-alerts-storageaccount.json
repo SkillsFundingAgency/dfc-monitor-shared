@@ -107,7 +107,7 @@
             "location": "westeurope",
             "tags": {},
             "properties": {
-                "description": "[concat(parameters('BaseName'),' Premium File Share alert - Usage throttled')]",
+                "description": "[concat(parameters('BaseName'),' File Share alert - Usage throttled')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
@@ -142,11 +142,11 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('BaseName'),'-blob-requests')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-blob-transactions')]",
             "location": "global",
             "tags": {},
             "properties": {
-                "description": "[concat(parameters('BaseName'),' Blob Storage - Request success 99% or lower')]",
+                "description": "[concat(parameters('BaseName'),' Blob Storage transactions are outside dynamic thresholds')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
