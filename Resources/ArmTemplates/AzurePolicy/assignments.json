@@ -43,6 +43,52 @@
         }],    
         "parameters": "[parameters('policyParameters')]"
         }
+      },
+      // KV //
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "[concat(parameters('env'), '-KV-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "properties": {
+        "description": "[variables('AssignmentDescription')]",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-KV-DeployDiagSettingsByResourceNamePrefix')]",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [{
+            "message": "[variables('ComplianceMessage')]"
+        }],    
+        "parameters": "[parameters('policyParameters')]"
+        }
+      },
+      // DATA FACTORY //
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "[concat(parameters('env'), '-DF-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "properties": {
+        "description": "[variables('AssignmentDescription')]",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-DF-DeployDiagSettingsByResourceNamePrefix')]",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [{
+            "message": "[variables('ComplianceMessage')]"
+        }],    
+        "parameters": "[parameters('policyParameters')]"
+        }
       }
     ]
   }
