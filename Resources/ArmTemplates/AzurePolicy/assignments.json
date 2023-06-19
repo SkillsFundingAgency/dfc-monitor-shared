@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+      "_generator": {
+        "name": "bicep",
+        "version": "0.5.6.12127",
+        "templateHash": "1532257987028557958"
+      }
+    },
+    "parameters": {
+        "env": {
+            "type": "string"
+        },
+        "policyParameters": {
+            "type": "object"
+        }
+    },
+    "variables": {
+      "AssignmentDescription": "Deployed via ARM templates. Checks compliance for diagnostic settings, ensuring forwarding of required logs and metrics to log analytics workspace.",
+      "ComplianceMessage": "Diagnostic Settings either not set or set incorrectly."
+    },
+    "resources": [
+      // AKS //
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "properties": {
+        "description": "[variables('AssignmentDescription')]",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-AKS-DeployDiagSettingsByResourceNamePrefix')]",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [{
+            "message": "[variables('ComplianceMessage')]"
+        }],    
+        "parameters": "[parameters('policyParameters')]"
+        }
+      }
+    ]
+  }
