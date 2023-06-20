@@ -32,6 +32,7 @@
         },
         "name": "dfc-ActivityLog-assignment",
         "properties": {
+          "displayName": "dfc-ActivityLog-assignment",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-AKS-DeployDiagSettingsByResourceNamePrefix')]",
@@ -55,6 +56,7 @@
         },
         "name": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
+          "name": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-AKS-DeployDiagSettingsByResourceNamePrefix')]",
@@ -78,6 +80,7 @@
         },
         "name": "[concat(parameters('env'), '-KV-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
+          "displayName": "[concat(parameters('env'), '-KV-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-KV-DeployDiagSettingsByResourceNamePrefix')]",
@@ -124,6 +127,7 @@
         },
         "name": "[concat(parameters('env'), '-SqlDb-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
+        "displayName": "[concat(parameters('env'), '-SqlDb-DeployDiagSettingsByResourceNamePrefix-assignment')]", 
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-SqlDb-DeployDiagSettingsByResourceNamePrefix')]",
@@ -147,6 +151,7 @@
         },
         "name": "[concat(parameters('env'), '-LA-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
+        "displayName": "[concat(parameters('env'), '-LA-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-LA-DeployDiagSettingsByResourceNamePrefix')]",
@@ -159,6 +164,7 @@
         "parameters": "[parameters('policyParameters')]"
         }
       },
+      // NSG //
       {
         "type": "Microsoft.Authorization/policyAssignments",
         "apiVersion": "2022-06-01",
@@ -169,9 +175,58 @@
         },
         "name": "[concat(parameters('env'), '-NSG-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
+        "displayName": "[concat(parameters('env'), '-NSG-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-NSG-DeployDiagSettingsByResourceNamePrefix')]",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [{
+            "message": "[variables('ComplianceMessage')]"
+        }],    
+        "parameters": "[parameters('policyParameters')]"
+        }
+      },
+      // RECOVERY SERVICES VAULT //
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "[concat(parameters('env'), '-RSV-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "properties": {
+        "displayName": "[concat(parameters('env'), '-RSV-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "description": "[variables('AssignmentDescription')]",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-RSV-DeployDiagSettingsByResourceNamePrefix')]",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [{
+            "message": "[variables('ComplianceMessage')]"
+        }],    
+        "parameters": "[parameters('policyParameters')]"
+        }
+      },
+      // STORAGE ACCOUNTS
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "[concat(parameters('env'), '-SA-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "properties": {
+        "displayName": "[concat(parameters('env'), '-SA-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+        "description": "[variables('AssignmentDescription')]",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-SA-DeployDiagSettingsByResourceNamePrefix')]",
         "scope": "[subscription().id]",
         "resourceSelectors": [],
         "overrides": [],
