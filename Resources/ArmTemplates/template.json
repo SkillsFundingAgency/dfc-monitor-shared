@@ -5,42 +5,123 @@
     "appInsightsName": {
       "type": "String"
     },
+    "actionGroupName1": {
+      "type": "String"
+    },
+    "actionGroupShortName1": {
+      "type": "String"
+    },
+    "actionGroupEmail1": {
+      "type": "String"
+    },
+    "actionGroupName2": {
+      "type": "String"
+    },
+    "actionGroupShortName2": {
+      "type": "String"
+    },
+    "actionGroupEmail2": {
+      "type": "String"
+    },
+    "actionGroupName3": {
+      "type": "String"
+    },
+    "actionGroupShortName3": {
+      "type": "String"
+    },
+    "actionGroupEmail3": {
+      "type": "String"
+    },
     "dashboardName": {
       "type": "String"
     },
     "sharedWorkspaceId": {
       "type": "String"
-    },
-    "actionGroupName1": {
-        "type": "string"
-    },
-    "actionGroupShortName1": {
-        "type": "string"
-    },
-    "actionGroupEmail1": {
-        "type": "string"
-    },
-    "actionGroupName2": {
-        "type": "string"
-    },
-    "actionGroupShortName2": {
-        "type": "string"
-    },
-    "actionGroupEmail2": {
-        "type": "string"
-    },
-    "actionGroupName3": {
-        "type": "string"
-    },
-    "actionGroupShortName3": {
-        "type": "string"
-    },
-    "actionGroupEmail3": {
-        "type": "string"
     }
   },
   "variables": {},
   "resources": [
+    {
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('actionGroupName1')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "[parameters('actionGroupShortName1')]",
+        "enabled": true,
+        "emailReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupShortName1'),'_-EmailAction-')]",
+            "emailAddress": "[parameters('actionGroupEmail1')]",
+            "useCommonAlertSchema": false
+          }
+        ],
+        "smsReceivers": [],
+        "webhookReceivers": [],
+        "eventHubReceivers": [],
+        "itsmReceivers": [],
+        "azureAppPushReceivers": [],
+        "automationRunbookReceivers": [],
+        "voiceReceivers": [],
+        "logicAppReceivers": [],
+        "azureFunctionReceivers": [],
+        "armRoleReceivers": []
+      }
+    },
+    {
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('actionGroupName2')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "[parameters('actionGroupShortName2')]",
+        "enabled": true,
+        "emailReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupShortName2'),'_-EmailAction-')]",
+            "emailAddress": "[parameters('actionGroupEmail2')]",
+            "useCommonAlertSchema": false
+          }
+        ],
+        "smsReceivers": [],
+        "webhookReceivers": [],
+        "eventHubReceivers": [],
+        "itsmReceivers": [],
+        "azureAppPushReceivers": [],
+        "automationRunbookReceivers": [],
+        "voiceReceivers": [],
+        "logicAppReceivers": [],
+        "azureFunctionReceivers": [],
+        "armRoleReceivers": []
+      }
+    },
+    {
+      "type": "microsoft.insights/actionGroups",
+      "apiVersion": "2023-01-01",
+      "name": "[parameters('actionGroupName3')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "[parameters('actionGroupShortName3')]",
+        "enabled": true,
+        "emailReceivers": [
+          {
+            "name": "[concat(parameters('actionGroupShortName3'),'_-EmailAction-')]",
+            "emailAddress": "[parameters('actionGroupEmail3')]",
+            "useCommonAlertSchema": false
+          }
+        ],
+        "smsReceivers": [],
+        "webhookReceivers": [],
+        "eventHubReceivers": [],
+        "itsmReceivers": [],
+        "azureAppPushReceivers": [],
+        "automationRunbookReceivers": [],
+        "voiceReceivers": [],
+        "logicAppReceivers": [],
+        "azureFunctionReceivers": [],
+        "armRoleReceivers": []
+      }
+    },
     {
       "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02",
@@ -374,87 +455,6 @@
         "sendEmailsToSubscriptionOwners": true,
         "customEmails": []
       }
-    },
-     {
-        "type": "microsoft.insights/actionGroups",
-        "apiVersion": "2023-01-01",
-        "name": "[parameters('actionGroupName1')]",
-        "location": "Global",
-        "properties": {
-          "groupShortName": "[parameters('actionGroupShortName1')]",
-          "enabled": true,
-          "emailReceivers": [
-            {
-              "name": "[concat(parameters('actionGroupShortName1'),'_-EmailAction-')]",
-              "emailAddress": "[parameters('actionGroupEmail1')]",
-              "useCommonAlertSchema": false
-            }
-          ],
-          "smsReceivers": [],
-          "webhookReceivers": [],
-          "eventHubReceivers": [],
-          "itsmReceivers": [],
-          "azureAppPushReceivers": [],
-          "automationRunbookReceivers": [],
-          "voiceReceivers": [],
-          "logicAppReceivers": [],
-          "azureFunctionReceivers": [],
-          "armRoleReceivers": []
-        }
-      },
-      {
-        "type": "microsoft.insights/actionGroups",
-        "apiVersion": "2023-01-01",
-        "name": "[parameters('actionGroupName2')]",
-        "location": "Global",
-        "properties": {
-          "groupShortName": "[parameters('actionGroupShortName2')]",
-          "enabled": true,
-          "emailReceivers": [
-            {
-              "name": "[concat(parameters('actionGroupShortName2'),'_-EmailAction-')]",
-              "emailAddress": "[parameters('actionGroupEmail2')]",
-              "useCommonAlertSchema": false
-            }
-          ],
-          "smsReceivers": [],
-          "webhookReceivers": [],
-          "eventHubReceivers": [],
-          "itsmReceivers": [],
-          "azureAppPushReceivers": [],
-          "automationRunbookReceivers": [],
-          "voiceReceivers": [],
-          "logicAppReceivers": [],
-          "azureFunctionReceivers": [],
-          "armRoleReceivers": []
-        }
-      },
-      {
-        "type": "microsoft.insights/actionGroups",
-        "apiVersion": "2023-01-01",
-        "name": "[parameters('actionGroupName3')]",
-        "location": "Global",
-        "properties": {
-          "groupShortName": "[parameters('actionGroupShortName3')]",
-          "enabled": true,
-          "emailReceivers": [
-            {
-              "name": "[concat(parameters('actionGroupShortName3'),'_-EmailAction-')]",
-              "emailAddress": "[parameters('actionGroupEmail3')]",
-              "useCommonAlertSchema": false
-            }
-          ],
-          "smsReceivers": [],
-          "webhookReceivers": [],
-          "eventHubReceivers": [],
-          "itsmReceivers": [],
-          "azureAppPushReceivers": [],
-          "automationRunbookReceivers": [],
-          "voiceReceivers": [],
-          "logicAppReceivers": [],
-          "azureFunctionReceivers": [],
-          "armRoleReceivers": []
-        }
-      }
+    }
   ]
 }
