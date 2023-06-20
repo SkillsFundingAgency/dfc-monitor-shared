@@ -992,7 +992,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "QueryStoreWaitStatisticsEnabled": {
             "type": "String",
@@ -1004,7 +1004,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "ErrorsEnabled": {
             "type": "String",
@@ -1016,7 +1016,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "DatabaseWaitStatisticsEnabled": {
             "type": "String",
@@ -1028,7 +1028,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "BlocksEnabled": {
             "type": "String",
@@ -1040,7 +1040,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "SQLInsightsEnabled": {
             "type": "String",
@@ -1052,7 +1052,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "SQLSecurityAuditEventsEnabled": {
             "type": "String",
@@ -1064,7 +1064,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "TimeoutsEnabled": {
             "type": "String",
@@ -1076,7 +1076,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "AutomaticTuningEnabled": {
             "type": "String",
@@ -1088,7 +1088,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "DeadlocksEnabled": {
             "type": "String",
@@ -1100,7 +1100,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "True"
+            "defaultValue": "False"
           },
           "Basic": {
             "type": "String",
