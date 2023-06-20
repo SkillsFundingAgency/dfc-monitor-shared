@@ -3,40 +3,40 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "appInsightsName": {
-            "value": "dfc-foo-shared-ai"
-        },
-        "dashboardName": {
-            "value": "dfc-foo-shared-ai-dashboard"
-        },
-        "sharedWorkspaceId": {
-            "value": "dfc-foo-shared-la"
+            "value": "__appInsightsName__"
         },
         "actionGroupName1": {
-            "value": "dfc-foo-shared-oncall-ag"
+            "value": "__actionGroupName1__"
         },
         "actionGroupShortName1": {
-            "value": "AG-ONCALL"
+            "value": "__actionGroupShortName1__"
         },
         "actionGroupEmail1": {
-            "value": "ncs1@automation.com"
+            "value": "__actionGroupEmail1__"
         },
         "actionGroupName2": {
-            "value": "dfc-foo-shared-support-ag"
+            "value": "__actionGroupName2__"
         },
         "actionGroupShortName2": {
-            "value": "AG-NETCOBAU"
+            "value": "__actionGroupShortName2__"
         },
         "actionGroupEmail2": {
-            "value": "ncs1@automation.com"
+            "value": "__actionGroupEmail2__"
         },
         "actionGroupName3": {
-            "value": "dfc-foo-shared-stakeholder-ag"
+            "value": "__actionGroupName3__"
         },
         "actionGroupShortName3": {
-            "value": "AG-NCSSTK"
+            "value": "__actionGroupShortName3__"
         },
         "actionGroupEmail3": {
-            "value": "ncs1@automation.com"
+            "value": "__actionGroupEmail3__"
+        },
+        "dashboardName": {
+            "value": "__dashboardName__"
+        },
+        "sharedWorkspaceId": {
+            "value": "__sharedWorkspaceId__"
         }
     }
 }

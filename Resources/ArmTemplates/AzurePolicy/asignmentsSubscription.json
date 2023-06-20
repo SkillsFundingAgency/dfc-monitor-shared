@@ -1,0 +1,43 @@
+// assignments applied to root of subscription
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+      "_generator": {
+        "name": "bicep",
+        "version": "0.5.6.12127",
+        "templateHash": "1532257987028557958"
+      }
+    },
+    "parameters": {
+        "policyParameters": {
+            "type": "object"
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+      // ACTIVITY LOGS //
+      {
+        "type": "Microsoft.Authorization/policyAssignments",
+        "apiVersion": "2022-06-01",
+        // location and identity are required for anything other than audit assignments
+        "location": "westeurope",
+        "identity": { 
+            "type": "SystemAssigned"
+        },
+        "name": "dfc-ActivityLog-assignment1",
+        "properties": {
+          "displayName": "dfc-ActivityLog-assignment",
+        "description": "Ensures activity logs are forwarded to log analytics",
+        "enforcementMode": "DoNotEnforce",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+        "scope": "[subscription().id]",
+        "resourceSelectors": [],
+        "overrides": [],
+        "nonComplianceMessages": [],    
+        "parameters": "[parameters('policyParameters')]"
+        }
+      }
+    ]
+  }

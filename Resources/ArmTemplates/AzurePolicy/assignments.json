@@ -21,30 +21,6 @@
       "ComplianceMessage": "Diagnostic Settings either not set or set incorrectly."
     },
     "resources": [
-      // ACTIVITY LOGS //
-      {
-        "type": "Microsoft.Authorization/policyAssignments",
-        "apiVersion": "2022-06-01",
-        // location and identity are required for anything other than audit assignments
-        "location": "westeurope",
-        "identity": { 
-            "type": "SystemAssigned"
-        },
-        "name": "dfc-ActivityLog-assignment",
-        "properties": {
-          "displayName": "dfc-ActivityLog-assignment",
-        "description": "[variables('AssignmentDescription')]",
-        "enforcementMode": "DoNotEnforce",
-        "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-AKS-DeployDiagSettingsByResourceNamePrefix')]",
-        "scope": "[subscription().id]",
-        "resourceSelectors": [],
-        "overrides": [],
-        "nonComplianceMessages": [{
-            "message": "[variables('ComplianceMessage')]"
-        }],    
-        "parameters": "[parameters('policyParameters')]"
-        }
-      },
       // AKS //
       {
         "type": "Microsoft.Authorization/policyAssignments",
@@ -56,7 +32,7 @@
         },
         "name": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "properties": {
-          "name": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
+          "displayName": "[concat(parameters('env'), '-AKS-DeployDiagSettingsByResourceNamePrefix-assignment')]",
         "description": "[variables('AssignmentDescription')]",
         "enforcementMode": "DoNotEnforce",
         "policyDefinitionId": "[concat(subscription().id, '/providers/Microsoft.Authorization/policyDefinitions/Policy-AKS-DeployDiagSettingsByResourceNamePrefix')]",
