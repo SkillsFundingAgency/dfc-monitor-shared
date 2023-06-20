@@ -10,6 +10,33 @@
         },
         "sharedWorkspaceId": {
             "value": "__sharedWorkspaceId__"
+        },
+        "actionGroupName1": {
+            "value": "__actionGroupName1__"
+        },
+        "actionGroupShortName1": {
+            "value": "__actionGroupShortName1__"
+        },
+        "actionGroupEmail1": {
+            "value": "__actionGroupEmail1__"
+        },
+        "actionGroupName2": {
+            "value": "__actionGroupName2__"
+        },
+        "actionGroupShortName2": {
+            "value": "__actionGroupShortName2__"
+        },
+        "actionGroupEmail2": {
+            "value": "__actionGroupEmail2__"
+        },
+        "actionGroupName3": {
+            "value": "__actionGroupName3__"
+        },
+        "actionGroupShortName3": {
+            "value": "__actionGroupShortName3__"
+        },
+        "actionGroupEmail3": {
+            "value": "__actionGroupEmail3__"
         }
     }
 }
