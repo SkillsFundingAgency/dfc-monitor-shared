@@ -1805,7 +1805,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "False"
+            "defaultValue": "True"
           },
           "matchWorkspace": {
             "type": "Boolean",
@@ -1874,7 +1874,7 @@
                         "equals": "[[parameters('metricsEnabled')]"
                       }
                     },
-                    "greaterOrEquals": 1
+                    "greaterOrEquals": 0
                   },
                   {
                     "anyOf": [
