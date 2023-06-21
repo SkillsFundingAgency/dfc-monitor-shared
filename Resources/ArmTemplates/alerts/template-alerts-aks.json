@@ -148,12 +148,12 @@
                 "description": "[concat(parameters('Environment'),' AKS Container alert - One or more nodes are not ready')]",
                 "severity": 0,
                 "enabled": true,
-                "evaluationFrequency": "PT5M",
+                "evaluationFrequency": "PT30M",
                 "scopes": ["[parameters('Scope')]"],
                 "targetResourceTypes": [
                     "microsoft.containerservice/managedclusters"
                 ],
-                "windowSize": "PT5M",
+                "windowSize": "PT30M",
                 "criteria": {
                     "allOf": [
                         {
@@ -164,7 +164,7 @@
                             "operator": "GreaterThanOrEqual",
                             "threshold": 1,
                             "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
+                                "numberOfEvaluationPeriods": 1,
                                 "minFailingPeriodsToAlert": 1
                             }
                         }
