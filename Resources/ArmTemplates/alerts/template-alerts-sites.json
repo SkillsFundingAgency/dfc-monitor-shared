@@ -27,7 +27,7 @@
             "location": "global",
             "properties": {
                 "description": "[concat(parameters('BaseName'),'Application Service alert - Higher than average memory usage')]",
-                "severity": 4,
+                "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
@@ -153,7 +153,7 @@
             "location": "global",
             "properties": {
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average CPU usage')]",
-                "severity": 4,
+                "severity": 1,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
@@ -223,10 +223,6 @@
                 "targetResourceType": "Microsoft.Web/sites",
                 "targetResourceRegion": "westeurope",
                 "actions": [
-                    {
-                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
-                        "webHookProperties": {}
-                    }
                 ]
             }
         },
@@ -264,12 +260,7 @@
                 "autoMitigate": true,
                 "targetResourceType": "Microsoft.Web/sites",
                 "targetResourceRegion": "westeurope",
-                "actions": [
-                    {
-                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
-                        "webHookProperties": {}
-                    }
-                ]
+                "actions": []
             }
         },
         {
@@ -287,7 +278,7 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
+                            "alertSensitivity": "Low",
                             "failingPeriods": {
                                 "numberOfEvaluationPeriods": 4,
                                 "minFailingPeriodsToAlert": 4
