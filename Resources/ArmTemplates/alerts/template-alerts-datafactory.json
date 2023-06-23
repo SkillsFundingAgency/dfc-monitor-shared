@@ -87,7 +87,7 @@
                             "threshold": 0,
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.DataFactory/factories",
-                            "metricName": "TriggerFailedRuns",
+                            "metricName": "PipelineFailedRuns",
                             "operator": "GreaterThan",
                             "timeAggregation": "Total",
                             "skipMetricValidation": false,
