@@ -117,7 +117,7 @@
             },
             "properties": {
                 "description": "[concat(parameters('Environment'),' SQL database alert - High CPU Usage')]",
-                "severity": 4,
+                "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
