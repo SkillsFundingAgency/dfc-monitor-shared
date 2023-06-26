@@ -1783,18 +1783,6 @@
               "assignPermissions": true
             }
           },
-          "metricsEnabled": {
-            "type": "String",
-            "metadata": {
-              "displayName": "Enable metrics",
-              "description": "Whether to enable metrics stream to the Log Analytics workspace - True or False"
-            },
-            "allowedValues": [
-              "True",
-              "False"
-            ],
-            "defaultValue": "True"
-          },
           "logsEnabled": {
             "type": "String",
             "metadata": {
@@ -1805,7 +1793,7 @@
               "True",
               "False"
             ],
-            "defaultValue": "False"
+            "defaultValue": "True"
           },
           "matchWorkspace": {
             "type": "Boolean",
@@ -1867,16 +1855,6 @@
                     "greaterOrEquals": 1
                   },
                   {
-                    "count": {
-                      "field": "Microsoft.Insights/diagnosticSettings/metrics[*]",
-                      "where": {
-                        "field": "Microsoft.Insights/diagnosticSettings/metrics[*].enabled",
-                        "equals": "[[parameters('metricsEnabled')]"
-                      }
-                    },
-                    "greaterOrEquals": 0
-                  },
-                  {
                     "anyOf": [
                       {
                         "value": "[[parameters('matchWorkspace')]",
@@ -1908,9 +1886,6 @@
                         "type": "string"
                       },
                       "logAnalytics": {
-                        "type": "string"
-                      },
-                      "metricsEnabled": {
                         "type": "string"
                       },
                       "logsEnabled": {
@@ -1967,9 +1942,6 @@
                     },
                     "logAnalytics": {
                       "value": "[[parameters('logAnalytics')]"
-                    },
-                    "metricsEnabled": {
-                      "value": "[[parameters('metricsEnabled')]"
                     },
                     "logsEnabled": {
                       "value": "[[parameters('logsEnabled')]"
