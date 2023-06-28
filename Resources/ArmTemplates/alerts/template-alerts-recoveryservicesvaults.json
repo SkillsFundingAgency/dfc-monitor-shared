@@ -1,0 +1,106 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "array"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        },
+        "QueryFilter":{
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/activitylogalerts",
+            "apiVersion": "2020-10-01",
+            "name": "[concat('alert-',parameters('Environment'),'-rsv-delete')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "scopes": "[parameters('Scope')]",
+                "condition": {
+                    "allOf": [
+                        {
+                            "field": "category",
+                            "equals": "Administrative"
+                        },
+                        {
+                            "field": "resourceType",
+                            "equals": "microsoft.recoveryservices/vaults"
+                        },
+                        {
+                            "field": "operationName",
+                            "equals": "Microsoft.RecoveryServices/Vaults/delete"
+                        }
+                    ]
+                },
+                "actions": {
+                    "actionGroups": [
+                        {
+                            "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                            "webhookProperties": {}
+                        }
+                    ]
+                },
+                "enabled": false,
+                "description": "[concat(parameters('Environment'),' Backup alert - Backup workload deleted')]"
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-rsv-backupfailure')]",
+            "location": "westeurope",
+            "tags": {},
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-rsv-backupfailure')]",
+                "description": "[concat(parameters('Environment'),' Backup alert - Backup failed')]",
+                "severity": 0,
+                "enabled": false,
+                "evaluationFrequency": "PT30M",
+                "scopes": [
+                    "[parameters('Scope')]",
+                ],
+                "targetResourceTypes": [
+                    "microsoft.recoveryservices/vaults"
+                ],
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "AddonAzureBackupJobs | summarize arg_max(TimeGenerated, *) by JobUniqueId | where JobStatus == 'Failed'",
+                            // To create an alert for this query, click '+ New alert rule'\nAzureActivity\n
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": "[parameters('ActionGroupOncallId')]",
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        }
+    ]
+}

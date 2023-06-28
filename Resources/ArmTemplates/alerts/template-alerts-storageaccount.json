@@ -1,0 +1,186 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "array"
+        },
+        "BaseName": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        // {
+        //     "type": "microsoft.insights/metricAlerts",
+        //     "apiVersion": "2018-03-01",
+        //     "name": "[concat('alert-',parameters('BaseName'),'-files-capacity')]",
+        //     "location": "global",
+        //     "tags": {
+        //      },
+        //     "properties": {
+        //         "description": "[concat(parameters('BaseName'),' Premium File Share alert - capacity at 95%')]",
+        //         "severity": 2,
+        //         "enabled": true,
+        //         "scopes": "[parameters('Scope')]",
+        //         "evaluationFrequency": "PT5M",
+        //         "windowSize": "PT1H",
+        //         "criteria": {
+        //             "allOf": [
+        //                 {
+        //                     "threshold": 5222680231936,
+        //                     "name": "Metric1",
+        //                     "metricNamespace": "Microsoft.Storage/storageAccounts",
+        //                     "metricName": "UsedCapacity",
+        //                     "operator": "GreaterThanOrEqual",
+        //                     "timeAggregation": "Average",
+        //                     "skipMetricValidation": false,
+        //                     "criterionType": "StaticThresholdCriterion"
+        //                 }
+        //             ],
+        //             "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+        //         },
+        //         "autoMitigate": true,
+        //         "targetResourceType": "Microsoft.Storage/storageAccounts",
+        //         "targetResourceRegion": "westeurope",
+        //         "actions": [
+        //             {
+        //                 "actionGroupId": "[parameters('ActionGroupOncallId')]",
+        //                 "webHookProperties": {}
+        //             }
+        //         ]
+        //     }
+        // },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('BaseName'),'-blob-throttled')]",
+            "location": "westeurope",
+            "tags": {
+                },
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Blob Storage - Usage throttled')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT15M",
+                "windowSize": "PT15M",
+                "overrideQueryTimeRange": "P2D",
+                "targetResourceTypes": [
+                    "Microsoft.Storage/storageAccounts"
+                ],
+                 "criteria": {
+                    "allOf": [
+                        {
+                            "query": "// To create an alert for this query, click '+ New alert rule'\nStorageBlobLogs\n| where TimeGenerated > ago(3d) and StatusText contains \"ServerBusy\"\n| project TimeGenerated, OperationName, StatusCode, StatusText, _ResourceId\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "operator": "GreaterThan",
+                            "threshold": 0,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                    "webHookProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('BaseName'),'-files-throttled')]",
+            "location": "westeurope",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' File Share alert - Usage throttled')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT15M",
+                "windowSize": "PT15M",
+                "overrideQueryTimeRange": "P2D",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "// To create an alert for this query, click '+ New alert rule'\nStorageFileLogs\n| where TimeGenerated > ago(3d) and StatusText contains \"ServerBusy\"\n| project TimeGenerated, OperationName, StatusCode, StatusText, _ResourceId\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "operator": "GreaterThan",
+                            "threshold": 0,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "targetResourceTypes": [
+                    "Microsoft.Storage/storageAccounts"
+                ],
+                "actions": {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('BaseName'),'-blob-transactions')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Blob Storage transactions are outside dynamic thresholds')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT5M",
+                "windowSize": "PT15M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Medium",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Storage/storageAccounts",
+                            "metricName": "Transactions",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Total",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Storage/storageAccounts",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
+    ]
+}
