@@ -35,8 +35,11 @@
         "dashboardName": {
             "value": "__dashboardName__"
         },
-        "sharedWorkspaceId": {
-            "value": "__sharedWorkspaceId__"
+        "workspaceName": {
+            "value": "__sharedLogAnalyticsWorkspace__"
+        },
+        "workspaceResourceGroup": {
+            "value": "__sharedLogAnalyticsResourceGroup__"
         }
     }
 }

@@ -35,8 +35,11 @@
     "dashboardName": {
       "type": "String"
     },
-    "sharedWorkspaceId": {
-      "type": "String"
+    "workspaceName": {
+      "type": "string"
+    },
+    "workspaceResourceGroup": {
+      "type": "string"
     }
   },
   "variables": {},
@@ -131,7 +134,7 @@
       "properties": {
         "Application_Type": "web",
         "RetentionInDays": 90,
-        "WorkspaceResourceId": "[parameters('sharedWorkspaceId')]",
+        "WorkspaceResourceId": "[resourceId(parameters('workspaceResourceGroup'), 'Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]",
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"

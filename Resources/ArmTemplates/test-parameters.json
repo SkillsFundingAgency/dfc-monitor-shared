@@ -35,8 +35,11 @@
         "dashboardName": {
             "value": "dfc-foo-shared-ai-dashboard"
         },
-        "sharedWorkspaceId": {
-            "value": "dfc-foo-shared-la"
+        "workspaceName": {
+            "value": "aTestLogAnalyticsAccount"
+        },
+        "workspaceResourceGroup": {
+            "value": "aResourceGroup"
         }
     }
 }
