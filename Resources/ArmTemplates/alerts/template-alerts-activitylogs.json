@@ -1,0 +1,147 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        },
+        "QueryFilter":{
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-azure-lock')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-azure-lock')]",
+                "description": "[concat('alert-',parameters('Environment'),' - An Azure resource lock has been deleted')]",
+                "severity": 3,
+                "enabled": true,
+                "evaluationFrequency": "PT10M",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
+                "windowSize": "PT10M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "[concat('AzureActivity | where OperationNameValue == \"MICROSOFT.AUTHORIZATION/LOCKS/DELETE\" | ', parameters('QueryFilter'))]",
+                            //"AzureActivity\n| where OperationNameValue == \"MICROSOFT.AUTHORIZATION/LOCKS/DELETE\"\n| where ResourceGroup has \"dfc-dev\" or ResourceGroup has \"dss-at\"\n",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "resourceIdColumn": "Resource",
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                        ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-azure-modify')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-azure-modify')]",
+                "description": "[concat('alert-',parameters('Environment'),' - An Azure resource has been modified')]",
+                "severity": 4,
+                "enabled": false,
+                "evaluationFrequency": "P1D",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
+                "windowSize": "P1D",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "[concat('AzureActivity | where OperationNameValue contains \"modify\" | ',parameters('QueryFilter'))]",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        },
+        {
+            "type": "microsoft.insights/scheduledqueryrules",
+            "apiVersion": "2023-03-15-preview",
+            "name": "[concat('alert-',parameters('Environment'),'-azure-delete')]",
+            "location": "westeurope",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[concat('alert-',parameters('Environment'),'-azure-delete')]",
+                "description": "[concat('alert-',parameters('Environment'),' - An Azure resource has been deleted')]",
+                "severity": 3,
+                "enabled": false,
+                "evaluationFrequency": "PT30M",
+                "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
+                "windowSize": "PT30M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "query": "[concat('AzureActivity | where OperationNameValue contains \"delete\" | ',parameters('QueryFilter'))]",
+                            "timeAggregation": "Count",
+                            "dimensions": [],
+                            "resourceIdColumn": "ResourceId",
+                            "operator": "GreaterThanOrEqual",
+                            "threshold": 1,
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 1,
+                                "minFailingPeriodsToAlert": 1
+                            }
+                        }
+                    ]
+                },
+                "autoMitigate": false,
+                "actions": {
+                    "actionGroups": [
+                        "[parameters('ActionGroupOncallId')]"
+                    ],
+                    "customProperties": {},
+                    "actionProperties": {}
+                }
+            }
+        }
+    ]
+}

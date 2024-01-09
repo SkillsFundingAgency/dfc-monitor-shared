@@ -1,0 +1,132 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ActionGroupStakeholdersId": {
+            "type": "string"
+        },
+        "ActionGroupBauId": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+      "resources": [
+        {
+            "type": "microsoft.insights/activitylogalerts",
+            "apiVersion": "2020-10-01",
+            "name": "alert-servicehealth-degraded",
+            "location": "global",
+            "properties": {
+                "scopes": [
+                    "[concat('/subscriptions/',subscription().subscriptionId)]"
+                ],
+                "condition": {
+                    "allOf": [
+                        {
+                            "field": "category",
+                            "equals": "ServiceHealth"
+                        },
+                        {
+                            "field": "properties.impactedServices[*].ServiceName",
+                            "containsAny": [
+                                "API Management",
+                                "App Service",
+                                "App Service (Linux)",
+                                "App Service (Linux) \\ Web App for Containers",
+                                "App Service (Linux) \\ Web Apps",
+                                "App Service \\ Web Apps",
+                                "Application Gateway",
+                                "Application Insights",
+                                "Functions",
+                                "SQL Database",
+                                "Azure Cosmos DB for PostgreSQL",
+                                "Azure Database for MySQL",
+                                "Azure Database for MySQL flexible servers",
+                                "Azure Database for PostgreSQL",
+                                "Azure Database for PostgreSQL flexible servers",
+                                "Key Vault",
+                                "Data Factory",
+                                "Storage",
+                                "Alerts",
+                                "Alerts & Metrics",
+                                "Advisor",
+                                "Action Groups",
+                                "Activity Logs & Alerts",
+                                "Automation",
+                                "Azure Container Service",
+                                "Azure Container Registry",
+                                "Azure Container Apps",
+                                "Azure DevOps",
+                                "Azure Frontdoor",
+                                "Azure Kubernetes Service (AKS)",
+                                "Azure Load Testing",
+                                "Azure Monitor",
+                                "Backup",
+                                "Event Grid",
+                                "Virtual Network"
+                            ]
+                        },
+                        {
+                            "field": "properties.impactedServices[*].ImpactedRegions[*].RegionName",
+                            "containsAny": [
+                                "West Europe",
+                                "Global"
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "actionGroups": []
+                },
+                "enabled": true,
+                "description": "Azure platform hosting and service degraded"
+            }
+         },
+        {
+            "type": "microsoft.insights/activitylogalerts",
+            "apiVersion": "2020-10-01",
+            "name": "alert-resourcehealth-degraded",
+            "location": "global",
+            "tags": {
+            },
+            "properties": {
+                "scopes": [
+                    "[concat('/subscriptions/',subscription().subscriptionId)]"
+                ],
+                "condition": {
+                    "allOf": [
+                        {
+                            "field": "category",
+                            "equals": "ResourceHealth"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "field": "properties.currentHealthStatus",
+                                    "equals": "Degraded"
+                                },
+                                {
+                                    "field": "properties.currentHealthStatus",
+                                    "equals": "Unavailable"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "actionGroups": [
+                        {
+                            "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                            "webhookProperties": {}
+                        }
+                    ]
+                },
+                "enabled": true,
+                "description": "Azure resource availability degraded"
+            }
+        }
+    ]
+}
