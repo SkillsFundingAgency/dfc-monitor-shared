@@ -5,12 +5,6 @@
         "appInsightsName": {
             "value": "__appInsightsName__"
         },
-        "dashboardName": {
-            "value": "__dashboardName__"
-        },
-        "sharedWorkspaceId": {
-            "value": "__sharedWorkspaceId__"
-        },
         "actionGroupName1": {
             "value": "__actionGroupName1__"
         },
@@ -37,6 +31,15 @@
         },
         "actionGroupEmail3": {
             "value": "__actionGroupEmail3__"
+        },
+        "dashboardName": {
+            "value": "__dashboardName__"
+        },
+        "workspaceName": {
+            "value": "__sharedLogAnalyticsWorkspace__"
+        },
+        "workspaceResourceGroup": {
+            "value": "__sharedLogAnalyticsResourceGroup__"
         }
     }
 }
