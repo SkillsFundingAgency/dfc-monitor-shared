@@ -248,7 +248,7 @@
                             },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
-                            "metricName": "BytesSent",
+                            "metricName": "BytesReceived",
                             "operator": "GreaterOrLessThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
