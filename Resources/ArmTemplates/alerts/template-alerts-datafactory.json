@@ -8,12 +8,6 @@
         "BaseName": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         }

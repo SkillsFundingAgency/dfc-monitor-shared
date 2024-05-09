@@ -8,12 +8,6 @@
         "Environment": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         }
@@ -32,7 +26,7 @@
             },
             "properties": {
                 "description": "[concat('alert-',parameters('Environment'),' Key Vault Alert - Availability')]",
-                "severity": 2,
+                "severity": 1,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",

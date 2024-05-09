@@ -8,58 +8,12 @@
         "BaseName": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         }
     },
     "variables": {},
     "resources": [
-        // {
-        //     "type": "microsoft.insights/metricAlerts",
-        //     "apiVersion": "2018-03-01",
-        //     "name": "[concat('alert-',parameters('BaseName'),'-files-capacity')]",
-        //     "location": "global",
-        //     "tags": {
-        //      },
-        //     "properties": {
-        //         "description": "[concat(parameters('BaseName'),' Premium File Share alert - capacity at 95%')]",
-        //         "severity": 2,
-        //         "enabled": true,
-        //         "scopes": "[parameters('Scope')]",
-        //         "evaluationFrequency": "PT5M",
-        //         "windowSize": "PT1H",
-        //         "criteria": {
-        //             "allOf": [
-        //                 {
-        //                     "threshold": 5222680231936,
-        //                     "name": "Metric1",
-        //                     "metricNamespace": "Microsoft.Storage/storageAccounts",
-        //                     "metricName": "UsedCapacity",
-        //                     "operator": "GreaterThanOrEqual",
-        //                     "timeAggregation": "Average",
-        //                     "skipMetricValidation": false,
-        //                     "criterionType": "StaticThresholdCriterion"
-        //                 }
-        //             ],
-        //             "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
-        //         },
-        //         "autoMitigate": true,
-        //         "targetResourceType": "Microsoft.Storage/storageAccounts",
-        //         "targetResourceRegion": "westeurope",
-        //         "actions": [
-        //             {
-        //                 "actionGroupId": "[parameters('ActionGroupOncallId')]",
-        //                 "webHookProperties": {}
-        //             }
-        //         ]
-        //     }
-        // },
         {
             "type": "microsoft.insights/scheduledqueryrules",
             "apiVersion": "2023-03-15-preview",
@@ -69,7 +23,7 @@
                 },
             "properties": {
                 "description": "[concat(parameters('BaseName'),' Blob Storage - Usage throttled')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT15M",
@@ -108,7 +62,7 @@
             "tags": {},
             "properties": {
                 "description": "[concat(parameters('BaseName'),' File Share alert - Usage throttled')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT15M",
@@ -147,7 +101,7 @@
             "tags": {},
             "properties": {
                 "description": "[concat(parameters('BaseName'),' Blob Storage transactions are outside dynamic thresholds')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT5M",
