@@ -8,12 +8,6 @@
         "BaseName": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         }
@@ -27,7 +21,7 @@
             "location": "global",
             "properties": {
                 "description": "[concat(parameters('BaseName'),'Application Service alert - Higher than average memory usage')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
@@ -77,7 +71,7 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
+                            "alertSensitivity": "Low",
                             "failingPeriods": {
                                 "numberOfEvaluationPeriods": 4,
                                 "minFailingPeriodsToAlert": 4
@@ -119,7 +113,7 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
+                            "alertSensitivity": "Low",
                             "failingPeriods": {
                                 "numberOfEvaluationPeriods": 4,
                                 "minFailingPeriodsToAlert": 4
@@ -146,48 +140,6 @@
                 ]
             }
         },
-        // {
-        //     "type": "Microsoft.Insights/metricAlerts",
-        //     "apiVersion": "2018-03-01",
-        //     "name": "[concat('alert-',parameters('BaseName'),'-cpu')]",
-        //     "location": "global",
-        //     "properties": {
-        //         "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average CPU usage')]",
-        //         "severity": 1,
-        //         "enabled": true,
-        //         "scopes": "[parameters('Scope')]",
-        //         "evaluationFrequency": "PT1M",
-        //         "windowSize": "PT5M",
-        //         "criteria": {
-        //             "allOf": [
-        //                 {
-        //                     "alertSensitivity": "Medium",
-        //                     "failingPeriods": {
-        //                         "numberOfEvaluationPeriods": 4,
-        //                         "minFailingPeriodsToAlert": 4
-        //                     },
-        //                     "name": "Metric1",
-        //                     "metricNamespace": "Microsoft.Web/sites",
-        //                     "metricName": "AppConnections",
-        //                     "operator": "GreaterOrLessThan",
-        //                     "timeAggregation": "Average",
-        //                     "skipMetricValidation": false,
-        //                     "criterionType": "DynamicThresholdCriterion"
-        //                 }
-        //             ],
-        //             "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
-        //         },
-        //         "autoMitigate": true,
-        //         "targetResourceType": "Microsoft.Web/sites",
-        //         "targetResourceRegion": "westeurope",
-        //         "actions": [
-        //             {
-        //                 "ActionGroupId": "[parameters('ActionGroupOncallId')]",
-        //                 "webHookProperties": {}
-        //             }
-        //         ]
-        //     }
-        // },
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
@@ -270,7 +222,7 @@
             "location": "global",
             "properties": {
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Higher than average handle count')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
@@ -312,7 +264,7 @@
             "location": "global",
             "properties": {
                 "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 4xx errors')]",
-                "severity": 2,
+                "severity": 3,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
                 "evaluationFrequency": "PT1M",
@@ -320,7 +272,7 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
+                            "alertSensitivity": "Low",
                             "failingPeriods": {
                                 "numberOfEvaluationPeriods": 4,
                                 "minFailingPeriodsToAlert": 4
@@ -350,10 +302,10 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('BaseName'),'-http5xx')]",
+            "name": "[concat('alert-',parameters('BaseName'),'-http401')]",
             "location": "global",
             "properties": {
-                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 5xx errors')]",
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high Http401 errors')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": "[parameters('Scope')]",
@@ -362,7 +314,49 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Medium",
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Http401",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('BaseName'),'-http5xx')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high 5xx errors')]",
+                "severity": 1,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
                             "failingPeriods": {
                                 "numberOfEvaluationPeriods": 4,
                                 "minFailingPeriodsToAlert": 4

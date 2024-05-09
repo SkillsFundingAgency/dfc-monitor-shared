@@ -8,12 +8,6 @@
         "Environment": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         }
@@ -28,7 +22,7 @@
             "tags": {},
             "properties": {
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High CPU usage')]",
-                "severity": 1,
+                "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
@@ -67,7 +61,7 @@
             "tags": {},
             "properties": {
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High Memory usage')]",
-                "severity": 1,
+                "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
@@ -106,7 +100,7 @@
             "tags": {},
             "properties": {
                 "description": "[concat(parameters('Environment'),' AKS Container alert - High Disk usage')]",
-                "severity": 1,
+                "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",
@@ -146,7 +140,7 @@
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-aks-notready')]",
                 "description": "[concat(parameters('Environment'),' AKS Container alert - One or more nodes are not ready')]",
-                "severity": 0,
+                "severity": 2,
                 "enabled": true,
                 "evaluationFrequency": "PT30M",
                 "scopes": ["[parameters('Scope')]"],
@@ -193,7 +187,7 @@
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-aks-podfailed')]",
                 "description": "[concat(parameters('Environment'),' AKS Container alert - One or more pods are in a failed state')]",
-                "severity": 1,
+                "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
                 "evaluationFrequency": "PT1M",

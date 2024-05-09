@@ -5,12 +5,6 @@
         "Environment": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
             "type": "string"
         },
@@ -30,7 +24,7 @@
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-azure-lock')]",
                 "description": "[concat('alert-',parameters('Environment'),' - An Azure resource lock has been deleted')]",
-                "severity": 3,
+                "severity": 2,
                 "enabled": true,
                 "evaluationFrequency": "PT10M",
                 "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],
@@ -112,7 +106,7 @@
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-azure-delete')]",
                 "description": "[concat('alert-',parameters('Environment'),' - An Azure resource has been deleted')]",
-                "severity": 3,
+                "severity": 2,
                 "enabled": false,
                 "evaluationFrequency": "PT30M",
                 "scopes": ["[concat('/subscriptions/',subscription().subscriptionId)]"],

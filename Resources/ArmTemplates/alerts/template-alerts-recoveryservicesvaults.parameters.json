@@ -8,17 +8,8 @@
         "Environment": {
             "value": "__env__"
         },
-        "ActionGroupStakeholdersId": {
-            "value": "__ActionGroupStakeholdersId__"
-        },
-        "ActionGroupBauId": {
-            "value": "__ActionGroupBauId__"
-        },
         "ActionGroupOncallId": {
             "value": "__ActionGroupBauId__"
-        },
-        "QueryFilter": {
-            "value": "__QueryFilter__"
         }
     }
 }

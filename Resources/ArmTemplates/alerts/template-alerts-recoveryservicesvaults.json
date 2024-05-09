@@ -8,16 +8,7 @@
         "Environment": {
             "type": "string"
         },
-        "ActionGroupStakeholdersId": {
-            "type": "string"
-        },
-        "ActionGroupBauId": {
-            "type": "string"
-        },
         "ActionGroupOncallId": {
-            "type": "string"
-        },
-        "QueryFilter":{
             "type": "string"
         }
     },
@@ -68,11 +59,11 @@
             "properties": {
                 "displayName": "[concat('alert-',parameters('Environment'),'-rsv-backupfailure')]",
                 "description": "[concat(parameters('Environment'),' Backup alert - Backup failed')]",
-                "severity": 0,
+                "severity": 2,
                 "enabled": false,
                 "evaluationFrequency": "PT30M",
                 "scopes": [
-                    "[parameters('Scope')]",
+                    "[parameters('Scope')]"
                 ],
                 "targetResourceTypes": [
                     "microsoft.recoveryservices/vaults"
