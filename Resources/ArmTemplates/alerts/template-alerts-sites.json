@@ -302,6 +302,48 @@
         {
             "type": "Microsoft.Insights/metricAlerts",
             "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('BaseName'),'-http401')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('BaseName'), 'Application Service alert - Abnormally high Http401 errors')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/sites",
+                            "metricName": "Http401",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Web/sites",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
             "name": "[concat('alert-',parameters('BaseName'),'-http5xx')]",
             "location": "global",
             "properties": {
