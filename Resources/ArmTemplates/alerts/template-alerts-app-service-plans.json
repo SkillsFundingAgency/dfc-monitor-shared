@@ -1,0 +1,141 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "Array"
+        },
+        "BaseName": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-', parameters('BaseName'), '-memory')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Application Service Plan alert - memory usage')]",
+                "severity": 1,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/serverfarms",
+                            "metricName": "MemoryPercentage",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "targetResourceType": "Microsoft.Web/serverfarms",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-', parameters('BaseName'), '-cpu')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Application Service Plan alert - CPU usage')]",
+                "severity": 1,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/serverfarms",
+                            "metricName": "CpuPercentage",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "targetResourceType": "Microsoft.Web/serverfarms",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-', parameters('BaseName'), '-outbound-sockets')]",
+            "location": "global",
+            "properties": {
+                "description": "[concat(parameters('BaseName'),' Application Service Plan alert - Abnormal socket usage')]",
+                "severity": 1,
+                "enabled": true,
+                "scopes": "[parameters('Scope')]",
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "alertSensitivity": "Low",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": 4,
+                                "minFailingPeriodsToAlert": 4
+                            },
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Web/serverfarms",
+                            "metricName": "SocketOutboundAll",
+                            "operator": "GreaterOrLessThan",
+                            "timeAggregation": "Average",
+                            "skipMetricValidation": false,
+                            "criterionType": "DynamicThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
+                },
+                "targetResourceType": "Microsoft.Web/serverfarms",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "ActionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
+    ]
+}
