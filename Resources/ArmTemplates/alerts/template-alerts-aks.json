@@ -151,7 +151,7 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "query": "KubeNodeInventory\n| where Status != \"Ready\"",
+                            "query": "KubeNodeInventory\n| where not(Status has_any(\"Ready\", \"VMEventScheduled,Ready\"))",
                             "timeAggregation": "Count",
                             "dimensions": [],
                             "resourceIdColumn": "_ResourceId",
