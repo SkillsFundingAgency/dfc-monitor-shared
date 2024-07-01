@@ -72,7 +72,7 @@
                             "threshold": 80,
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Cache/redis",
-                            "metricName": "usedmemory",
+                            "metricName": "allusedmemorypercentage",
                             "operator": "GreaterThanOrEqual",
                             "timeAggregation": "Maximum",
                             "skipMetricValidation": false,
