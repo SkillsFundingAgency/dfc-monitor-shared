@@ -56,7 +56,7 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-redis-server-load')]",
+            "name": "[concat('alert-',parameters('Environment'),'-redis-high-memory')]",
             "location": "global",
             "tags": {},
             "properties": {
@@ -95,7 +95,7 @@
         {
             "type": "microsoft.insights/metricAlerts",
             "apiVersion": "2018-03-01",
-            "name": "[concat('alert-',parameters('Environment'),'-redis-server-load')]",
+            "name": "[concat('alert-',parameters('Environment'),'-redis-errors')]",
             "location": "global",
             "tags": {},
             "properties": {
