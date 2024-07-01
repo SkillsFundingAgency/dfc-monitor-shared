@@ -1,0 +1,135 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Scope": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string"
+        },
+        "ActionGroupOncallId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-redis-server-load')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('Environment'),' redis - High server load')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": ["[parameters('Scope')]"],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 80,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Cache/redis",
+                            "metricName": "allserverLoad",
+                            "operator": "GreaterThanOrEqual",
+                            "timeAggregation": "Maximum",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Cache/redis",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-redis-server-load')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('Environment'),' redis - High server load')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": ["[parameters('Scope')]"],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 80,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Cache/redis",
+                            "metricName": "usedmemory",
+                            "operator": "GreaterThanOrEqual",
+                            "timeAggregation": "Maximum",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Cache/redis",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        },
+        {
+            "type": "microsoft.insights/metricAlerts",
+            "apiVersion": "2018-03-01",
+            "name": "[concat('alert-',parameters('Environment'),'-redis-server-load')]",
+            "location": "global",
+            "tags": {},
+            "properties": {
+                "description": "[concat(parameters('Environment'),' redis - High server load')]",
+                "severity": 2,
+                "enabled": true,
+                "scopes": ["[parameters('Scope')]"],
+                "evaluationFrequency": "PT1M",
+                "windowSize": "PT5M",
+                "criteria": {
+                    "allOf": [
+                        {
+                            "threshold": 0,
+                            "name": "Metric1",
+                            "metricNamespace": "Microsoft.Cache/redis",
+                            "metricName": "errors",
+                            "operator": "GreaterThan",
+                            "timeAggregation": "Maximum",
+                            "skipMetricValidation": false,
+                            "criterionType": "StaticThresholdCriterion"
+                        }
+                    ],
+                    "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria"
+                },
+                "autoMitigate": true,
+                "targetResourceType": "Microsoft.Cache/redis",
+                "targetResourceRegion": "westeurope",
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('ActionGroupOncallId')]",
+                        "webHookProperties": {}
+                    }
+                ]
+            }
+        }
+    ]
+}
