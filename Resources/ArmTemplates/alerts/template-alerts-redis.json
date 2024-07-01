@@ -60,7 +60,7 @@
             "location": "global",
             "tags": {},
             "properties": {
-                "description": "[concat(parameters('Environment'),' redis - High server load')]",
+                "description": "[concat(parameters('Environment'),' redis - high memory use')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
@@ -99,7 +99,7 @@
             "location": "global",
             "tags": {},
             "properties": {
-                "description": "[concat(parameters('Environment'),' redis - High server load')]",
+                "description": "[concat(parameters('Environment'),' redis - errors occurred')]",
                 "severity": 2,
                 "enabled": true,
                 "scopes": ["[parameters('Scope')]"],
