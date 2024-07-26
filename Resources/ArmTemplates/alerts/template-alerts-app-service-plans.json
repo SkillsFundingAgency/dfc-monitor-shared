@@ -29,18 +29,14 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Low",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/serverfarms",
                             "metricName": "MemoryPercentage",
                             "operator": "GreaterOrLessThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
+                            "criterionType": "StaticThresholdCriterion",
+                            "threshold": 70
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
@@ -70,18 +66,14 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Low",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/serverfarms",
                             "metricName": "CpuPercentage",
                             "operator": "GreaterOrLessThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
+                            "criterionType": "StaticThresholdCriterion",
+                            "threshold": 70
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
