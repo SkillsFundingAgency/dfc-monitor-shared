@@ -37,7 +37,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "AverageMemoryWorkingSet",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -79,7 +79,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "AverageResponseTime",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -121,7 +121,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "AppConnections",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -163,7 +163,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "BytesSent",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -201,7 +201,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "BytesReceived",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -238,7 +238,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "Handles",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -280,7 +280,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "Http4xx",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -322,7 +322,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "Http401",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
@@ -364,7 +364,7 @@
                             "name": "Metric1",
                             "metricNamespace": "Microsoft.Web/sites",
                             "metricName": "Http5xx",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
                             "criterionType": "DynamicThresholdCriterion"
