@@ -31,18 +31,14 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Low",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
                             "name": "Metric1",
                             "metricNamespace": "microsoft.sql/servers/databases",
                             "metricName": "dtu_consumption_percent",
-                            "operator": "GreaterOrLessThan",
+                            "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
+                            "criterionType": "StaticThresholdCriterion",
+                            "threshold": 70
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
@@ -75,18 +71,15 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Low",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
+
                             "name": "Metric1",
                             "metricNamespace": "microsoft.sql/servers/databases",
                             "metricName": "log_write_percent",
                             "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
+                            "criterionType": "StaticThresholdCriterion",
+                            "threshold": 70
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
@@ -119,18 +112,14 @@
                 "criteria": {
                     "allOf": [
                         {
-                            "alertSensitivity": "Low",
-                            "failingPeriods": {
-                                "numberOfEvaluationPeriods": 4,
-                                "minFailingPeriodsToAlert": 4
-                            },
                             "name": "Metric1",
                             "metricNamespace": "microsoft.sql/servers/databases",
                             "metricName": "cpu_percent",
                             "operator": "GreaterThan",
                             "timeAggregation": "Average",
                             "skipMetricValidation": false,
-                            "criterionType": "DynamicThresholdCriterion"
+                            "criterionType": "StaticThresholdCriterion",
+                            "threshold": 70
                         }
                     ],
                     "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
