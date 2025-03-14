@@ -42,7 +42,20 @@
       "type": "string"
     }
   },
-  "variables": {},
+  "variables": {
+    "emailGroup1AsArray": "[split(parameters('actionGroupEmail1'), ',')]",
+    "copy": [
+        {
+        "name": "expandedEmailGroup1",
+        "count": "[length(variables('emailGroup1AsArray'))]",
+        "input": {
+          "name": "[format('{0}-EmailAction-EmailAddr-{1}]', parameters('actionGroupShortName1'), copyIndex('expandedEmailGroup1'))]",
+          "emailAddress": "[variables('emailGroup1AsArray')[copyIndex('expandedEmailGroup1')]]",
+          "useCommonAlertSchema": false
+        }
+      }
+    ]
+  },
   "resources": [
     {
       "type": "microsoft.insights/actionGroups",
@@ -52,13 +65,7 @@
       "properties": {
         "groupShortName": "[parameters('actionGroupShortName1')]",
         "enabled": true,
-        "emailReceivers": [
-          {
-            "name": "[concat(parameters('actionGroupShortName1'),'_-EmailAction-')]",
-            "emailAddress": "[parameters('actionGroupEmail1')]",
-            "useCommonAlertSchema": false
-          }
-        ],
+        "emailReceivers": "[variables('expandedEmailGroup1')]",
         "smsReceivers": [],
         "webhookReceivers": [],
         "eventHubReceivers": [],
@@ -87,7 +94,7 @@
           }
         ],
         "smsReceivers": [],
-        "webhookReceivers": [],
+        "webhookReceivers": [], 
         "eventHubReceivers": [],
         "itsmReceivers": [],
         "azureAppPushReceivers": [],
